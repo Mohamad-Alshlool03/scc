@@ -9,172 +9,120 @@
   <style>
     /* ===== أساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
       font-family: 'Cairo', sans-serif;
-      background: #f4f8fb;
-      color: #333;
-      line-height: 1.7;
-      padding: 20px;
-      direction: rtl;
+      background: #f4f8fb; color: #333;
+      line-height: 1.7; padding: 20px;
     }
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      max-width: 1200px; margin: 0 auto; background: #fff;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.06);
     }
 
     /* ===== الهيدر ===== */
     header {
-      background: linear-gradient(135deg, #009fe3, #2c7a7b);
-      color: #fff;
-      text-align: center;
-      padding: 60px 20px 80px;
+      background: linear-gradient(135deg,#009fe3,#2c7a7b);
+      color:#fff; text-align:center; padding:60px 20px 80px;
     }
-    header h1 { font-size: 2.4rem; font-weight: 700; }
-    header p { font-size: 1.15rem; opacity: 0.95; margin-top: 8px; }
+    header h1{font-size:2.4rem;font-weight:700}
+    header p{font-size:1.15rem;opacity:.95;margin-top:8px}
 
     /* ===== بطاقات التواصل ===== */
-    .contact-section {
-      margin-top: 32px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      padding: 40px 24px;
+    .contact-section{
+      margin-top:32px;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px; padding:40px 24px;
     }
-    .contact-card {
-      background: #f9fcfe;
-      border: 1px solid #e3edf3;
-      border-radius: 12px;
-      text-align: center;
-      padding: 24px 18px;
-      transition: 0.3s ease;
+    .contact-card{
+      background:#f9fcfe; border:1px solid #e3edf3; border-radius:12px;
+      text-align:center; padding:24px 18px; transition:.3s ease; overflow:hidden;
     }
-    .contact-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
+    .contact-card:hover{transform:translateY(-3px); box-shadow:0 12px 22px rgba(0,0,0,.05)}
+    .contact-card i{
+      background:#009fe3; color:#fff; border-radius:50%;
+      width:64px; height:64px; display:inline-flex; align-items:center; justify-content:center;
+      margin-bottom:14px; font-size:1.6rem;
     }
-    .contact-card i {
-      background: #009fe3;
-      color: #fff;
-      border-radius: 50%;
-      width: 64px;
-      height: 64px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-      font-size: 1.6rem;
-    }
-    .contact-card h3 { font-size: 1.15rem; color: #2d3748; margin-bottom: 8px; }
-    .contact-card p, .contact-card a.data {
-      font-size: 1rem;
-      color: #1f2937;
-      margin: 0 auto 8px;
-      max-width: 100%;
-      word-break: break-word;      /* يظهر الإيميل كامل */
-      overflow-wrap: anywhere;     /* يكسر السطر لو طويل */
-      direction: ltr;              /* لعرض الأرقام/الإيميل بوضوح */
+    .contact-card h3{font-size:1.15rem; color:#2d3748; margin-bottom:8px}
+    .contact-card p, .contact-card a.data{
+      font-size:1rem; color:#1f2937; margin:0 auto 8px; max-width:100%;
+      word-break:break-word; overflow-wrap:anywhere; /* لا اتجاه هنا لتجنّب خراب Firefox */
     }
 
-    /* كبسولة بيانات داخل البوكس (للإيميل/الأرقام) */
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #e9f6ff;
-      border: 1px solid #cfe9fb;
-      color: #0f3b59;
-      padding: 10px 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
+    /* كبسولة البيانات (الأرقام/الإيميل) — LTR فقط هنا */
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      background:#e9f6ff; border:1px solid #cfe9fb; color:#0f3b59;
+      padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:600;
+      width:100%; max-width:100%; box-sizing:border-box; margin:0 auto;
+      word-break:break-word; overflow-wrap:anywhere;
+      direction:ltr; unicode-bidi: plaintext; /* عرض صحيح للأرقام/البريد ضمن RTL */
     }
-    .pill:hover { background: #e2f1fb; }
+    .pill:hover{background:#e2f1fb}
 
     /* روابط داخل البطاقة */
-    .contact-card a.link {
-      color: #009fe3;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-    .contact-card a.link:hover { text-decoration: underline; }
+    .contact-card a.link{color:#009fe3; text-decoration:none; font-weight:600; transition:.2s}
+    .contact-card a.link:hover{text-decoration:underline}
 
     /* ===== الخدمات ===== */
-    .services {
-      background: #f4f8fb;
-      padding: 50px 24px;
-      text-align: center;
-    }
-    .services h2 { font-size: 1.8rem; margin-bottom: 28px; color: #2d3748; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-    .service-box {
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      padding: 18px 16px;
-      transition: 0.3s ease;
-    }
-    .service-box:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05); }
-    .service-box p { color: #4a5568; font-size: 1.02rem; }
+    .services{background:#f4f8fb; padding:50px 24px; text-align:center}
+    .services h2{font-size:1.8rem; margin-bottom:28px; color:#2d3748}
+    .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+    .service-box{background:#fff; border-radius:12px; border:1px solid #e2e8f0; padding:18px 16px; transition:.3s}
+    .service-box:hover{transform:translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.05)}
+    .service-box p{color:#4a5568; font-size:1.02rem}
 
     /* ===== السوشيال ===== */
-    .social { padding: 50px 20px; text-align: center; background: #ffffff; }
-    .social h2 { font-size: 1.8rem; margin-bottom: 20px; color: #2d3748; }
-    .social-icons {
-      display: flex; justify-content: center; gap: 22px; flex-wrap: wrap;
+    .social{padding:50px 20px; text-align:center; background:#fff}
+    .social h2{font-size:1.8rem; margin-bottom:20px; color:#2d3748}
+    .social-icons{display:flex; justify-content:center; gap:22px; flex-wrap:wrap}
+    /* Fallback لو المتصفح ما بدعم flex gap */
+    @supports not (gap: 1rem){
+      .social-icons{margin:-11px}
+      .social-icon{margin:11px}
     }
-    .social-icon {
-      width: 68px; height: 68px; border-radius: 50%;
-      background: #f9fcfe;
-      display: flex; align-items: center; justify-content: center;
-      transition: 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      text-decoration: none;            /* ← لا خطوط تحت الأيقونات */
-      border-bottom: none !important;   /* ← تأكيد إزالة أي خط */
+    .social-icon{
+      width:68px; height:68px; border-radius:50%; background:#f9fcfe;
+      display:flex; align-items:center; justify-content:center;
+      transition:.2s ease; box-shadow:0 4px 15px rgba(0,0,0,.05);
+      text-decoration:none; border-bottom:none!important;
     }
-    .social-icon:hover { transform: scale(1.08); }
-    .social-icon i { font-size: 1.6rem; }
-    .whatsapp i { color: #25d366; } .facebook i { color: #1877f2; } .instagram i { color: #e4405f; }
+    .social-icon:hover{transform:scale(1.08)}
+    .social-icon i{font-size:1.6rem}
+    .whatsapp i{color:#25d366}.facebook i{color:#1877f2}.instagram i{color:#e4405f}
 
     /* زر vCard */
-    .vcard-btn {
-      background: #2c7a7b; color: #fff; border: none; border-radius: 8px;
-      padding: 12px 18px; font-size: 1rem; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; transition: 0.2s;
+    .vcard-btn{
+      background:#2c7a7b; color:#fff; border:none; border-radius:8px;
+      padding:12px 18px; font-size:1rem; text-decoration:none;
+      display:inline-flex; align-items:center; gap:8px; margin-top:22px; transition:.2s;
     }
-    .vcard-btn:hover { background: #25625f; }
-    .vcard-btn i { font-size: 1.1rem; }
+    .vcard-btn:hover{background:#25625f}
+    .vcard-btn i{font-size:1.1rem}
 
     /* ===== الموقع ===== */
-    .location { background: #f4f8fb; padding: 50px 24px; text-align: center; }
-    .location h2 { font-size: 1.8rem; margin-bottom: 22px; color: #2d3748; }
-    .location-card {
-      max-width: 620px; margin: 0 auto; background: #fff; border-radius: 12px;
-      border: 1px solid #e2e8f0; padding: 24px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    .location{background:#f4f8fb; padding:50px 24px; text-align:center}
+    .location h2{font-size:1.8rem; margin-bottom:22px; color:#2d3748}
+    .location-card{
+      max-width:620px; margin:0 auto; background:#fff; border-radius:12px;
+      border:1px solid #e2e8f0; padding:24px; box-shadow:0 8px 20px rgba(0,0,0,.03);
     }
-    .location-card i { color: #009fe3; font-size: 2rem; margin-bottom: 10px; }
-    .location-card p {
-      font-size: 1.05rem; color: #4a5568; margin-bottom: 16px;
-      word-break: break-word; overflow-wrap: anywhere;
-    }
-    .maps-button {
-      background: #009fe3; color: #fff; border: none; border-radius: 8px;
-      padding: 10px 16px; cursor: pointer; transition: 0.2s; font-size: 1rem;
-    }
-    .maps-button:hover { background: #007bb8; }
+    .location-card i{color:#009fe3; font-size:2rem; margin-bottom:10px}
+    .location-card p{font-size:1.05rem; color:#4a5568; margin-bottom:16px; word-break:break-word; overflow-wrap:anywhere}
+    .maps-button{background:#009fe3; color:#fff; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; transition:.2s; font-size:1rem}
+    .maps-button:hover{background:#007bb8}
 
-    footer { background: #2d3748; color: #fff; text-align: center; padding: 26px 18px; font-size: 0.95rem; }
+    footer{background:#2d3748; color:#fff; text-align:center; padding:26px 18px; font-size:.95rem}
 
-    @media (max-width: 480px) {
+    /* ===== موبايل ===== */
+    @media (max-width:480px){
       header h1{font-size:2rem}
       .contact-section{padding:28px 16px; gap:16px}
+      .contact-card{padding:20px 14px}
+      .contact-card i{width:56px;height:56px;font-size:1.4rem}
+      .pill{font-size:.95rem; padding:10px 12px}
       .services{padding:36px 16px}
       .social{padding:36px 16px}
       .location{padding:36px 16px}
@@ -194,15 +142,15 @@
       <div class="contact-card">
         <i class="fas fa-phone-alt" aria-hidden="true"></i>
         <h3>الهاتف (مكالمات)</h3>
-        <p dir="ltr"><span class="pill">+962 797 383 239</span></p>
-        <a class="link data" href="tel:+962797383239" dir="ltr">اتصل الآن</a>
+        <p><span class="pill">+962 797 383 239</span></p>
+        <a class="link data" href="tel:+962797383239">اتصل الآن</a>
       </div>
 
-      <!-- البريد (الإيميل داخل البوكس) -->
+      <!-- البريد -->
       <div class="contact-card">
         <i class="fas fa-envelope" aria-hidden="true"></i>
         <h3>البريد الإلكتروني</h3>
-        <a class="pill" href="mailto:sccphysicaltherapy25@gmail.com" dir="ltr">
+        <a class="pill" href="mailto:sccphysicaltherapy25@gmail.com">
           <i class="fas fa-at" aria-hidden="true"></i> sccphysicaltherapy25@gmail.com
         </a>
       </div>
@@ -234,9 +182,8 @@
     <!-- السوشيال + زر vCard -->
     <section class="social">
       <h2>تواصل معنا</h2>
-
       <div class="social-icons">
-        <!-- واتساب: ملاحظة تقنية—رابط wa.me يجب أن يكون بدون + -->
+        <!-- واتساب: wa.me بدون + -->
         <a href="https://wa.me/962797393238" class="social-icon whatsapp" target="_blank" rel="noopener" title="+962 797 393 238">
           <i class="fab fa-whatsapp" aria-hidden="true"></i>
         </a>
@@ -259,21 +206,15 @@
       <div class="location-card">
         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         <p>إربد – امتداد شارع الهاشمي باتجاه وحشة سنتر – قرب مخابز نبيل – مجمع الزحراوي الطبي</p>
-        <button class="maps-button" onclick="openMaps()">
-          افتح في خرائط جوجل
-        </button>
+        <button class="maps-button" onclick="openMaps()">افتح في خرائط جوجل</button>
       </div>
     </section>
 
-    <footer>
-      © 2025 مركز الأبرز الإستشاري للعلاج الطبيعي - جميع الحقوق محفوظة
-    </footer>
+    <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي - جميع الحقوق محفوظة</footer>
   </div>
 
   <script>
-    function openMaps() {
-      window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank");
-    }
+    function openMaps(){ window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank"); }
   </script>
 </body>
 </html>
