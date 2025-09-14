@@ -163,22 +163,6 @@
       </div>
     </section>
 
-    <!-- الخدمات -->
-    <section class="services">
-      <h2>خدماتنا</h2>
-      <div class="services-grid">
-        <div class="service-box"><p>علاج وتأهيل الإصابات الرياضية بمختلف أنواعها</p></div>
-        <div class="service-box"><p>علاج الآلام العضلية</p></div>
-        <div class="service-box"><p>علاج خشونة والتهاب المفاصل</p></div>
-        <div class="service-box"><p>علاج الانزلاق الغضروفي (الديسك)</p></div>
-        <div class="service-box"><p>علاج مشاكل جهاز التوازن</p></div>
-        <div class="service-box"><p>علاج إصابات الجهاز العصبي مثل إصابات النخاع الشوكي والجلطات الدماغية</p></div>
-        <div class="service-box"><p>قسم مختص بعلاج الأطفال مثل حالات الشلل الدماغي</p></div>
-        <div class="service-box"><p>علاج مشاكل انحناء العمود الفقري</p></div>
-        <div class="service-box"><p>التعامل مع حالات التوحد</p></div>
-      </div>
-    </section>
-
     <!-- السوشيال + زر vCard -->
     <section class="social">
       <h2>تواصل معنا</h2>
@@ -187,10 +171,17 @@
         <a href="https://wa.me/962797393238" class="social-icon whatsapp" target="_blank" rel="noopener" title="+962 797 393 238">
           <i class="fab fa-whatsapp" aria-hidden="true"></i>
         </a>
-        <a href="https://www.facebook.com/share/179mBNJ71j/?mibextid=wwXIfr" class="social-icon facebook" target="_blank" rel="noopener">
+
+        <!-- فيسبوك: فتح التطبيق على الموبايل + رجوع للويب كـ fallback -->
+        <a href="https://facebook.com/profile.php?id=61579062652707"
+           class="social-icon facebook"
+           target="_blank" rel="noopener"
+           onclick="return openFacebook(event)"
+           aria-label="صفحة فيسبوك المركز">
           <i class="fab fa-facebook-f" aria-hidden="true"></i>
         </a>
-        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank" rel="noopener">
+
+        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank" rel="noopener" aria-label="حساب إنستغرام">
           <i class="fab fa-instagram" aria-hidden="true"></i>
         </a>
       </div>
@@ -214,7 +205,30 @@
   </div>
 
   <script>
-    function openMaps(){ window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank"); }
+    function openMaps(){
+      window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank");
+    }
+
+    // فتح صفحة فيسبوك في التطبيق على الموبايل، والرجوع للويب إذا التطبيق غير موجود
+    function openFacebook(e){
+      var pageUrl = "https://facebook.com/profile.php?id=61579062652707"; // رابط صفحتك
+      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(isMobile){
+        var deep = "fb://facewebmodal/f?href=" + encodeURIComponent(pageUrl);
+        var t = Date.now();
+        window.location.href = deep; // جرّب يفتح التطبيق
+        setTimeout(function(){
+          // لو ما تحوّل للتطبيق، افتح صفحة الويب
+          if(Date.now() - t < 1600){
+            window.open(pageUrl, "_blank");
+          }
+        }, 800);
+        e.preventDefault();
+        return false;
+      }
+      // على الكمبيوتر خليه يفتح الرابط العادي في تبويب جديد
+      return true;
+    }
   </script>
 </body>
 </html>
