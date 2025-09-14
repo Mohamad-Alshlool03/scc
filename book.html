@@ -41,14 +41,20 @@
     </header>
 
     <div class="content">
-      <!-- ✅ يرسل الطلبات مباشرة لإيميلك الشخصي عبر FormSubmit -->
+      <!-- ✅ يرسل الطلبات مباشرة لإيميلك عبر FormSubmit -->
       <form action="https://formsubmit.co/mshlool684@gmail.com" method="POST" accept-charset="UTF-8">
         <!-- إعدادات FormSubmit -->
         <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/">
-        <!-- honeypot لمكافحة البوتات (لا تزيل الـ name) -->
+        <!-- ✅ رد تلقائي للعميل -->
+        <input type="hidden" name="_autoresponse"
+               value="مرحبًا! تم استلام طلب الحجز في مركز الأبرز للاستشاري للعلاج الطبيعي. سنقوم بالتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً). شكرًا لثقتك بنا.">
+        <!-- ✅ تحويل لصفحة الشكر بعد الإرسال -->
+        <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
+        <!-- (اختياري) نسخة كربونية لبريد المركز -->
+        <!-- <input type="hidden" name="_cc" value="sccphysicaltherapy25@gmail.com"> -->
+        <!-- honeypot لمنع البوتات -->
         <input type="text" name="_honey" style="display:none">
 
         <div>
@@ -69,7 +75,7 @@
 
         <div>
           <label for="email">البريد الإلكتروني</label>
-          <!-- ⚠️ سمّه email ليدعم Reply-To في FormSubmit -->
+          <!-- مهم: لازم اسم الحقل 'email' ليتفعّل Reply-To في الرسالة -->
           <input id="email" name="email" type="email" placeholder="name@example.com">
         </div>
 
@@ -128,7 +134,7 @@
   </div>
 
   <script>
-    // منع تاريخ سابق لليوم + تعبئة أوقات رأس الساعة 09:00–17:00
+    // منع تاريخ سابق لليوم + تعبئة أوقات رأس الساعة 09:00–17:00 وإخفاء الماضي لليوم الحالي
     (function(){
       const START = 9;     // 09:00
       const END   = 17;    // 17:00 (غيّرها لـ 16 إن حبيت آخر جلسة 4 العصر)
@@ -179,7 +185,8 @@
       // عند تغيير التاريخ، أعِد بناء الساعات
       dateInput.addEventListener('change', function(){
         const chosen = new Date(this.value + 'T00:00');
-        buildOptions(isSameDay(chosen, today));
+        const t = new Date(); t.setHours(0,0,0,0);
+        buildOptions(isSameDay(chosen, t));
       });
     })();
   </script>
