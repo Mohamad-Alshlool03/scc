@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مركز الأبرز للعلاج الطبيعي</title>
+  <title>مركز الأبرز الإستشاري للعلاج الطبيعي</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== تنسيقات عامة ===== */
+    /* ===== أساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Cairo', sans-serif;
@@ -26,198 +26,196 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
     }
 
-    /* ===== Header ===== */
+    /* ===== الهيدر ===== */
     header {
       background: linear-gradient(135deg, #009fe3, #2c7a7b);
       color: #fff;
       text-align: center;
       padding: 60px 20px 80px;
-      position: relative;
     }
-    header h1 { font-size: 2.8rem; font-weight: 700; }
-    header p { font-size: 1.2rem; opacity: 0.9; margin-top: 8px; }
+    header h1 { font-size: 2.4rem; font-weight: 700; }
+    header p { font-size: 1.15rem; opacity: 0.95; margin-top: 8px; }
 
-    /* ===== Contact Cards ===== */
+    /* ===== بطاقات التواصل ===== */
     .contact-section {
-      margin-top: 40px;
+      margin-top: 32px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 50px 30px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      padding: 40px 24px;
     }
     .contact-card {
       background: #f9fcfe;
       border: 1px solid #e3edf3;
       border-radius: 12px;
       text-align: center;
-      padding: 30px 20px;
+      padding: 24px 18px;
       transition: 0.3s ease;
     }
     .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
     }
     .contact-card i {
       background: #009fe3;
       color: #fff;
       border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      display: flex;
+      width: 64px;
+      height: 64px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 1.8rem;
+      margin-bottom: 14px;
+      font-size: 1.6rem;
     }
-    .contact-card h3 { font-size: 1.3rem; color: #2d3748; margin-bottom: 10px; }
-    .contact-card p { font-size: 1rem; color: #4a5568; margin-bottom: 10px; }
-    .contact-card a {
+    .contact-card h3 { font-size: 1.15rem; color: #2d3748; margin-bottom: 8px; }
+    .contact-card p, .contact-card a.data {
+      font-size: 1rem;
+      color: #1f2937;
+      margin: 0 auto 8px;
+      max-width: 100%;
+      word-break: break-word;      /* يظهر الإيميل كامل */
+      overflow-wrap: anywhere;     /* يكسر السطر لو طويل */
+      direction: ltr;              /* لعرض الأرقام/الإيميل بوضوح */
+    }
+
+    /* كبسولة بيانات داخل البوكس (للإيميل/الأرقام) */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e9f6ff;
+      border: 1px solid #cfe9fb;
+      color: #0f3b59;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .pill:hover { background: #e2f1fb; }
+
+    /* روابط داخل البطاقة */
+    .contact-card a.link {
       color: #009fe3;
       text-decoration: none;
       font-weight: 600;
-      transition: 0.3s;
+      transition: 0.2s;
     }
-    .contact-card a:hover { text-decoration: underline; }
+    .contact-card a.link:hover { text-decoration: underline; }
 
-    /* ===== Services ===== */
+    /* ===== الخدمات ===== */
     .services {
       background: #f4f8fb;
-      padding: 60px 30px;
+      padding: 50px 24px;
       text-align: center;
     }
-    .services h2 { font-size: 2rem; margin-bottom: 40px; color: #2d3748; }
+    .services h2 { font-size: 1.8rem; margin-bottom: 28px; color: #2d3748; }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
     }
     .service-box {
       background: #fff;
       border-radius: 12px;
       border: 1px solid #e2e8f0;
-      padding: 25px 20px;
+      padding: 18px 16px;
       transition: 0.3s ease;
     }
-    .service-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-    .service-box p { color: #4a5568; font-size: 1.05rem; }
+    .service-box:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05); }
+    .service-box p { color: #4a5568; font-size: 1.02rem; }
 
-    /* ===== Social ===== */
-    .social {
-      padding: 60px 20px;
-      text-align: center;
-      background: #ffffff;
-    }
-    .social h2 { font-size: 2rem; margin-bottom: 30px; color: #2d3748; }
+    /* ===== السوشيال ===== */
+    .social { padding: 50px 20px; text-align: center; background: #ffffff; }
+    .social h2 { font-size: 1.8rem; margin-bottom: 20px; color: #2d3748; }
     .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
+      display: flex; justify-content: center; gap: 22px; flex-wrap: wrap;
     }
     .social-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+      width: 68px; height: 68px; border-radius: 50%;
       background: #f9fcfe;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-decoration: none;            /* ← لا خطوط تحت الأيقونات */
+      border-bottom: none !important;   /* ← تأكيد إزالة أي خط */
     }
-    .social-icon:hover { transform: scale(1.1); }
-    .social-icon i { font-size: 1.8rem; }
-    .whatsapp i { color: #25d366; }
-    .facebook i { color: #1877f2; }
-    .instagram i { color: #e4405f; }
+    .social-icon:hover { transform: scale(1.08); }
+    .social-icon i { font-size: 1.6rem; }
+    .whatsapp i { color: #25d366; } .facebook i { color: #1877f2; } .instagram i { color: #e4405f; }
 
     /* زر vCard */
     .vcard-btn {
-      background: #2c7a7b;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 30px;
-      transition: 0.3s;
+      background: #2c7a7b; color: #fff; border: none; border-radius: 8px;
+      padding: 12px 18px; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; transition: 0.2s;
     }
     .vcard-btn:hover { background: #25625f; }
-    .vcard-btn i { font-size: 1.2rem; }
+    .vcard-btn i { font-size: 1.1rem; }
 
-    /* ===== Location ===== */
-    .location {
-      background: #f4f8fb;
-      padding: 60px 30px;
-      text-align: center;
-    }
-    .location h2 { font-size: 2rem; margin-bottom: 30px; color: #2d3748; }
+    /* ===== الموقع ===== */
+    .location { background: #f4f8fb; padding: 50px 24px; text-align: center; }
+    .location h2 { font-size: 1.8rem; margin-bottom: 22px; color: #2d3748; }
     .location-card {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      padding: 30px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      max-width: 620px; margin: 0 auto; background: #fff; border-radius: 12px;
+      border: 1px solid #e2e8f0; padding: 24px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
     }
-    .location-card i { color: #009fe3; font-size: 2.2rem; margin-bottom: 15px; }
-    .location-card p { font-size: 1.1rem; color: #4a5568; margin-bottom: 20px; }
+    .location-card i { color: #009fe3; font-size: 2rem; margin-bottom: 10px; }
+    .location-card p {
+      font-size: 1.05rem; color: #4a5568; margin-bottom: 16px;
+      word-break: break-word; overflow-wrap: anywhere;
+    }
     .maps-button {
-      background: #009fe3;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 1rem;
+      background: #009fe3; color: #fff; border: none; border-radius: 8px;
+      padding: 10px 16px; cursor: pointer; transition: 0.2s; font-size: 1rem;
     }
     .maps-button:hover { background: #007bb8; }
 
-    footer {
-      background: #2d3748;
-      color: #fff;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.95rem;
+    footer { background: #2d3748; color: #fff; text-align: center; padding: 26px 18px; font-size: 0.95rem; }
+
+    @media (max-width: 480px) {
+      header h1{font-size:2rem}
+      .contact-section{padding:28px 16px; gap:16px}
+      .services{padding:36px 16px}
+      .social{padding:36px 16px}
+      .location{padding:36px 16px}
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>مركز الأبرز للعلاج الطبيعي</h1>
+      <h1>مركز الأبرز الإستشاري للعلاج الطبيعي</h1>
       <p>أضف حياة لأيامك</p>
     </header>
 
+    <!-- بطاقات التواصل -->
     <section class="contact-section">
+      <!-- مكالمات -->
       <div class="contact-card">
-        <i class="fas fa-phone-alt"></i>
-        <h3>الهاتف</h3>
-        <p>+962797383239</p>
-        <a href="tel:+962797383239">اتصل الآن</a>
+        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        <h3>الهاتف (مكالمات)</h3>
+        <p dir="ltr"><span class="pill">+962 797 383 239</span></p>
+        <a class="link data" href="tel:+962797383239" dir="ltr">اتصل الآن</a>
       </div>
+
+      <!-- البريد (الإيميل داخل البوكس) -->
       <div class="contact-card">
-        <i class="fas fa-envelope"></i>
+        <i class="fas fa-envelope" aria-hidden="true"></i>
         <h3>البريد الإلكتروني</h3>
-        <p>sccphysicaltherapy25@gmail.com</p>
-        <a href="mailto:sccphysicaltherapy25@gmail.com">أرسل رسالة</a>
+        <a class="pill" href="mailto:sccphysicaltherapy25@gmail.com" dir="ltr">
+          <i class="fas fa-at" aria-hidden="true"></i> sccphysicaltherapy25@gmail.com
+        </a>
       </div>
+
+      <!-- ساعات العمل -->
       <div class="contact-card">
-        <i class="fas fa-clock"></i>
+        <i class="fas fa-clock" aria-hidden="true"></i>
         <h3>ساعات العمل</h3>
         <p>السبت - الخميس<br>9:00 ص - 5:00 م</p>
       </div>
     </section>
 
+    <!-- الخدمات -->
     <section class="services">
       <h2>خدماتنا</h2>
       <div class="services-grid">
@@ -233,30 +231,42 @@
       </div>
     </section>
 
+    <!-- السوشيال + زر vCard -->
     <section class="social">
       <h2>تواصل معنا</h2>
+
       <div class="social-icons">
-        <a href="https://wa.me/+962797393238" class="social-icon whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/share/179mBNJ71j/?mibextid=wwXIfr" class="social-icon facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+        <!-- واتساب: ملاحظة تقنية—رابط wa.me يجب أن يكون بدون + -->
+        <a href="https://wa.me/962797393238" class="social-icon whatsapp" target="_blank" rel="noopener" title="+962 797 393 238">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/share/179mBNJ71j/?mibextid=wwXIfr" class="social-icon facebook" target="_blank" rel="noopener">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank" rel="noopener">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
       </div>
 
       <a href="clinic.vcf" class="vcard-btn" download>
-        <i class="fas fa-id-card"></i> حفظ جهة الاتصال
+        <i class="fas fa-id-card" aria-hidden="true"></i> حفظ جهة الاتصال
       </a>
     </section>
 
+    <!-- الموقع -->
     <section class="location">
       <h2>موقع العيادة</h2>
       <div class="location-card">
-        <i class="fas fa-map-marker-alt"></i>
+        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         <p>إربد – امتداد شارع الهاشمي باتجاه وحشة سنتر – قرب مخابز نبيل – مجمع الزحراوي الطبي</p>
-        <button class="maps-button" onclick="openMaps()">افتح في خرائط جوجل</button>
+        <button class="maps-button" onclick="openMaps()">
+          افتح في خرائط جوجل
+        </button>
       </div>
     </section>
 
     <footer>
-      © 2025 مركز الأبرز للعلاج الطبيعي - جميع الحقوق محفوظة
+      © 2025 مركز الأبرز الإستشاري للعلاج الطبيعي - جميع الحقوق محفوظة
     </footer>
   </div>
 
