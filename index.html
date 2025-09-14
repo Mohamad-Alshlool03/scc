@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Favicon (ضع ملف favicon.ico إن توفر) -->
+  <!-- Favicon (اختياري) -->
   <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
 
   <style>
@@ -101,16 +101,24 @@
       word-break:break-word; overflow-wrap:anywhere;
     }
 
-    /* كبسولة بيانات (أرقام/إيميل) آمنة لكل المتصفحات */
+    /* كبسولة بيانات (أرقام/إيميل) — إصلاح تكسير الإيميل */
     .pill{
       display:flex; align-items:center; gap:8px;
       background:#e9f6ff; border:1px solid #cfe9fb; color:#0f3b59;
       padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700;
       width:100%; max-width:100%; min-width:0; box-sizing:border-box; margin:0 auto;
-      word-break:break-word; overflow-wrap:anywhere;
-      direction:ltr; unicode-bidi:plaintext; /* يظهر +962 والبريد بشكل صحيح */
+
+      /* تصحيح الالتفاف */
+      overflow-wrap:normal;
+      word-break:normal;
+      white-space:nowrap;
+
+      direction:ltr; unicode-bidi:plaintext; /* يظهر +962 والبريد صحيح ضمن RTL */
     }
-    .pill:hover{ background:#e2f1fb }
+    /* على الشاشات الصغيرة اسمح بالالتفاف */
+    @media (max-width:520px){
+      .pill{ white-space:normal; }
+    }
 
     .contact-card a.link{ color:var(--brand); text-decoration:none; font-weight:700; transition:.2s }
     .contact-card a.link:hover{ text-decoration:underline }
@@ -190,7 +198,7 @@
       .contact-section{ padding:28px 16px; gap:16px }
       .contact-card{ padding:20px 14px }
       .contact-card i{ width:56px; height:56px; font-size:1.4rem }
-      .pill{ font-size:.95rem; padding:10px 12px }
+      .pill{ font-size:.95rem; padding:10px 12px } /* تبقى قابلة للّف حسب القاعدة فوق 520px */
       .services{ padding:36px 16px }
       .social{ padding:36px 16px }
       .location{ padding:36px 16px }
@@ -233,7 +241,8 @@
         <i class="fas fa-envelope" aria-hidden="true"></i>
         <h3>البريد الإلكتروني</h3>
         <a class="pill" href="mailto:sccphysicaltherapy25@gmail.com" aria-label="إرسال بريد">
-          <i class="fas fa-at" aria-hidden="true"></i> sccphysicaltherapy25@gmail.com
+          <i class="fas fa-at" aria-hidden="true"></i>
+          <span dir="ltr">sccphysicaltherapy25<wbr>@<wbr>gmail<wbr>.<wbr>com</span>
         </a>
       </div>
 
@@ -328,7 +337,7 @@
     }
   </script>
 
-  <!-- Structured Data: LocalBusiness (تحسين ظهورك في جوجل) -->
+  <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -353,4 +362,3 @@
   </script>
 </body>
 </html>
-
