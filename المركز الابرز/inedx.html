@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مركز الأبرز للعلاج الطبيعي</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== تنسيقات عامة ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f4f8fb;
+      color: #333;
+      line-height: 1.7;
+      padding: 20px;
+      direction: rtl;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, #009fe3, #2c7a7b);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 80px;
+      position: relative;
+    }
+    header h1 { font-size: 2.8rem; font-weight: 700; }
+    header p { font-size: 1.2rem; opacity: 0.9; margin-top: 8px; }
+
+    /* ===== Contact Cards ===== */
+    .contact-section {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 50px 30px;
+    }
+    .contact-card {
+      background: #f9fcfe;
+      border: 1px solid #e3edf3;
+      border-radius: 12px;
+      text-align: center;
+      padding: 30px 20px;
+      transition: 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.05);
+    }
+    .contact-card i {
+      background: #009fe3;
+      color: #fff;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+    }
+    .contact-card h3 { font-size: 1.3rem; color: #2d3748; margin-bottom: 10px; }
+    .contact-card p { font-size: 1rem; color: #4a5568; margin-bottom: 10px; }
+    .contact-card a {
+      color: #009fe3;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ===== Services ===== */
+    .services {
+      background: #f4f8fb;
+      padding: 60px 30px;
+      text-align: center;
+    }
+    .services h2 { font-size: 2rem; margin-bottom: 40px; color: #2d3748; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .service-box {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 25px 20px;
+      transition: 0.3s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    .service-box p { color: #4a5568; font-size: 1.05rem; }
+
+    /* ===== Social ===== */
+    .social {
+      padding: 60px 20px;
+      text-align: center;
+      background: #ffffff;
+    }
+    .social h2 { font-size: 2rem; margin-bottom: 30px; color: #2d3748; }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .social-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #f9fcfe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .social-icon:hover { transform: scale(1.1); }
+    .social-icon i { font-size: 1.8rem; }
+    .whatsapp i { color: #25d366; }
+    .facebook i { color: #1877f2; }
+    .instagram i { color: #e4405f; }
+
+    /* زر vCard */
+    .vcard-btn {
+      background: #2c7a7b;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 30px;
+      transition: 0.3s;
+    }
+    .vcard-btn:hover { background: #25625f; }
+    .vcard-btn i { font-size: 1.2rem; }
+
+    /* ===== Location ===== */
+    .location {
+      background: #f4f8fb;
+      padding: 60px 30px;
+      text-align: center;
+    }
+    .location h2 { font-size: 2rem; margin-bottom: 30px; color: #2d3748; }
+    .location-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+    .location-card i { color: #009fe3; font-size: 2.2rem; margin-bottom: 15px; }
+    .location-card p { font-size: 1.1rem; color: #4a5568; margin-bottom: 20px; }
+    .maps-button {
+      background: #009fe3;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+    .maps-button:hover { background: #007bb8; }
+
+    footer {
+      background: #2d3748;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>مركز الأبرز للعلاج الطبيعي</h1>
+      <p>أضف حياة لأيامك</p>
+    </header>
+
+    <section class="contact-section">
+      <div class="contact-card">
+        <i class="fas fa-phone-alt"></i>
+        <h3>الهاتف</h3>
+        <p>+962797383239</p>
+        <a href="tel:+962797383239">اتصل الآن</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h3>البريد الإلكتروني</h3>
+        <p>sccphysicaltherapy25@gmail.com</p>
+        <a href="mailto:sccphysicaltherapy25@gmail.com">أرسل رسالة</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-clock"></i>
+        <h3>ساعات العمل</h3>
+        <p>السبت - الخميس<br>9:00 ص - 5:00 م</p>
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>خدماتنا</h2>
+      <div class="services-grid">
+        <div class="service-box"><p>علاج وتأهيل الإصابات الرياضية بمختلف أنواعها</p></div>
+        <div class="service-box"><p>علاج الآلام العضلية</p></div>
+        <div class="service-box"><p>علاج خشونة والتهاب المفاصل</p></div>
+        <div class="service-box"><p>علاج الانزلاق الغضروفي (الديسك)</p></div>
+        <div class="service-box"><p>علاج مشاكل جهاز التوازن</p></div>
+        <div class="service-box"><p>علاج إصابات الجهاز العصبي مثل إصابات النخاع الشوكي والجلطات الدماغية</p></div>
+        <div class="service-box"><p>قسم مختص بعلاج الأطفال مثل حالات الشلل الدماغي</p></div>
+        <div class="service-box"><p>علاج مشاكل انحناء العمود الفقري</p></div>
+        <div class="service-box"><p>التعامل مع حالات التوحد</p></div>
+      </div>
+    </section>
+
+    <section class="social">
+      <h2>تواصل معنا</h2>
+      <div class="social-icons">
+        <a href="https://wa.me/+962797393238" class="social-icon whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/179mBNJ71j/?mibextid=wwXIfr" class="social-icon facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+
+      <a href="clinic.vcf" class="vcard-btn" download>
+        <i class="fas fa-id-card"></i> حفظ جهة الاتصال
+      </a>
+    </section>
+
+    <section class="location">
+      <h2>موقع العيادة</h2>
+      <div class="location-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>إربد – امتداد شارع الهاشمي باتجاه وحشة سنتر – قرب مخابز نبيل – مجمع الزحراوي الطبي</p>
+        <button class="maps-button" onclick="openMaps()">افتح في خرائط جوجل</button>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 مركز الأبرز للعلاج الطبيعي - جميع الحقوق محفوظة
+    </footer>
+  </div>
+
+  <script>
+    function openMaps() {
+      window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank");
+    }
+  </script>
+</body>
+</html>
