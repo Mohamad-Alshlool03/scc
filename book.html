@@ -17,16 +17,12 @@
     form{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px }
     .full{ grid-column:1/-1 }
     label{ display:block; font-weight:700; margin-bottom:6px }
-    input, select, textarea{
-      width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:1rem; background:#fff;
-    }
+    input, select, textarea{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:1rem; background:#fff; }
     textarea{ min-height:110px; resize:vertical }
     .hint{ font-size:.9rem; color:#64748b }
+    .msg{ grid-column:1/-1; padding:10px 12px; border-radius:10px; background:#fff3cd; color:#7a6200; border:1px solid #ffe69b; display:none }
     .actions{ display:flex; gap:10px; align-items:center; margin-top:6px }
-    button{
-      background:var(--brand-2); color:#fff; border:none; border-radius:10px;
-      padding:12px 18px; font-weight:700; cursor:pointer;
-    }
+    button{ background:var(--brand-2); color:#fff; border:none; border-radius:10px; padding:12px 18px; font-weight:700; cursor:pointer; }
     button:hover{ background:#25625f }
     .back{ text-decoration:none; font-weight:700; color:var(--brand) }
     footer{ text-align:center; color:#475569; font-size:.95rem; padding:10px 0 24px }
@@ -41,22 +37,18 @@
     </header>
 
     <div class="content">
-      <!-- ✅ يرسل الطلبات مباشرة لإيميلك عبر FormSubmit -->
+      <div id="infomsg" class="msg"></div>
+
+      <!-- ✉️ يُرسل إلى بريدك عبر FormSubmit (بدّل الإيميل لاحقاً لإيميل المركز) -->
       <form id="bookingForm"
             action="https://formsubmit.co/mshlool684@gmail.com"
-            method="POST" accept-charset="UTF-8">
-        <!-- إعدادات FormSubmit -->
+            method="POST" accept-charset="UTF-8" novalidate>
         <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <!-- ✅ رد تلقائي للعميل -->
         <input type="hidden" name="_autoresponse"
-               value="مرحبًا! تم استلام طلب الحجز في مركز الأبرز الاستشاري للعلاج الطبيعي. سنقوم بالتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً). شكرًا لثقتك بنا.">
-        <!-- ✅ تحويل رسمي من FormSubmit -->
+               value="مرحبًا! تم استلام طلب الحجز. سنتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً).">
         <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
-        <!-- (اختياري) نسخة كربونية لبريد المركز -->
-        <!-- <input type="hidden" name="_cc" value="sccphysicaltherapy25@gmail.com"> -->
-        <!-- honeypot لمنع البوتات -->
         <input type="text" name="_honey" style="display:none">
 
         <div>
@@ -71,13 +63,7 @@
         </div>
 
         <div>
-          <label for="whatsapp">رقم الواتساب</label>
-          <input id="whatsapp" name="رقم الواتساب" type="tel" inputmode="tel" placeholder="+962 79 xxxxxxx">
-        </div>
-
-        <div>
           <label for="email">البريد الإلكتروني</label>
-          <!-- مهم: اسم الحقل لازم يكون 'email' لتفعيل Reply-To -->
           <input id="email" name="email" type="email" placeholder="name@example.com">
         </div>
 
@@ -101,12 +87,10 @@
           <input id="date" name="التاريخ المفضل" type="date" required>
         </div>
 
-        <!-- قائمة وقت على رأس الساعة ضمن الدوام -->
         <div>
           <label for="time">الوقت المفضّل *</label>
           <select id="time" name="الوقت المفضل" required>
             <option value="" selected disabled>اختر وقتًا</option>
-            <!-- تُعبَّأ تلقائيًا من 09:00 إلى 17:00 -->
           </select>
           <div class="hint">الحجز على رأس الساعة ضمن الدوام: 9:00 ص – 5:00 م</div>
         </div>
@@ -130,89 +114,95 @@
       </form>
     </div>
 
-    <footer>
-      © 2025 مركز الأبرز الإستشاري للعلاج الطبيعي
-    </footer>
+    <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي</footer>
   </div>
 
   <script>
-    // منع تاريخ سابق لليوم + تعبئة أوقات رأس الساعة 09:00–17:00 وإخفاء الماضي لليوم الحالي
-    (function(){
-      const START = 9;     // 09:00
-      const END   = 17;    // 17:00 (غيّرها لـ 16 إن حبيت آخر جلسة 4 العصر)
-      const dateInput = document.getElementById('date');
-      const timeSelect = document.getElementById('time');
+    // إعدادات الزمن
+    const START = 9;  // 09:00
+    const END   = 17; // 17:00
 
-      // حد أدنى للتاريخ = اليوم
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      dateInput.min = today.toISOString().split('T')[0];
+    // عناصر
+    const form = document.getElementById('bookingForm');
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const info = document.getElementById('infomsg');
 
-      // تنسيق عربي بسيط للساعة
-      function labelFor(h){
-        if (h === 0) return "12:00 ص";
-        if (h === 12) return "12:00 م";
-        if (h < 12)  return (String(h).padStart(2,'0')) + ":00 ص";
-        return String(h-12).padStart(2,'0') + ":00 م";
+    // منع اختيار تاريخ ماضٍ
+    const today = new Date(); today.setHours(0,0,0,0);
+    dateInput.min = today.toISOString().split('T')[0];
+
+    function isSameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+    function labelFor(h){ if(h===0)return"12:00 ص"; if(h===12)return"12:00 م"; if(h<12)return String(h).padStart(2,'0')+":00 ص"; return String(h-12).padStart(2,'0')+":00 م"; }
+    function showMsg(txt){ info.textContent = txt; info.style.display = txt ? 'block':'none'; }
+
+    let ALL_BOOKINGS = []; // تُحمَّل من bookings.json
+
+    async function loadBookings(){
+      try{
+        const res = await fetch('bookings.json?b=' + Date.now(), {cache:'no-store'});
+        ALL_BOOKINGS = await res.json();
+        if (!Array.isArray(ALL_BOOKINGS)) ALL_BOOKINGS = [];
+      }catch(_){ ALL_BOOKINGS = []; }
+    }
+
+    function bookedTimesFor(dateStr){
+      return ALL_BOOKINGS
+        .filter(x => x.date === dateStr)
+        .map(x => x.time);
+    }
+
+    function buildOptions(forToday, booked=[]) {
+      timeSelect.innerHTML = '<option value="" selected disabled>اختر وقتًا</option>';
+      const now = new Date();
+      const nextHour = now.getMinutes()>0 ? now.getHours()+1 : now.getHours();
+
+      for (let h=START; h<=END; h++){
+        const hh = String(h).padStart(2,'0') + ':00';
+        const opt = document.createElement('option');
+        let label = labelFor(h);
+
+        const past = forToday && h < nextHour;
+        const reserved = booked.includes(hh);
+
+        if (reserved) label += ' — محجوز';
+        opt.value = hh;
+        opt.textContent = label;
+        opt.disabled = past || reserved;
+        timeSelect.appendChild(opt);
       }
+    }
 
-      function buildOptions(forToday){
-        timeSelect.innerHTML = '<option value="" selected disabled>اختر وقتًا</option>';
-        const now = new Date();
-        const nextHour = now.getMinutes() > 0 ? now.getHours()+1 : now.getHours();
+    async function refreshTimes(){
+      const d = dateInput.value;
+      if (!d){ timeSelect.innerHTML = '<option value="" selected disabled>اختر وقتًا</option>'; return; }
+      const booked = bookedTimesFor(d);
+      const chosen = new Date(d + 'T00:00');
+      buildOptions(isSameDay(chosen, today), booked);
+      showMsg(booked.length ? 'بعض الأوقات محجوزة وتم تعطيلها.' : '');
+    }
 
-        for (let h = START; h <= END; h++){
-          if (forToday && h < nextHour) continue; // إخفاء الأوقات التي مضت اليوم
-          const opt = document.createElement('option');
-          const hh  = String(h).padStart(2,'0') + ":00";
-          opt.value = hh;
-          opt.textContent = labelFor(h);
-          timeSelect.appendChild(opt);
-        }
-
-        if (timeSelect.options.length === 1){
-          const opt = document.createElement('option');
-          opt.disabled = true;
-          opt.textContent = "لا يوجد أوقات متاحة اليوم";
-          timeSelect.appendChild(opt);
-        }
-      }
-
-      function isSameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
-
-      // تعبئة أولية حسب اليوم المختار (افتراضيًا اليوم)
-      dateInput.value = dateInput.min;
-      buildOptions(true);
-
-      // عند تغيير التاريخ، أعِد بناء الساعات
-      dateInput.addEventListener('change', function(){
-        const chosen = new Date(this.value + 'T00:00');
-        const t = new Date(); t.setHours(0,0,0,0);
-        buildOptions(isSameDay(chosen, t));
-      });
+    // تحميل الحجوزات ثم بناء قائمة اليوم
+    (async function init(){
+      await loadBookings();
+      dateInput.value = dateInput.min; // اليوم
+      refreshTimes();
     })();
 
-    // ✅ إرسال عبر fetch + تحويل مضمون لصفحة الشكر كـ fallback
-    (function () {
-      const form = document.getElementById('bookingForm');
-      if (!form) return;
+    dateInput.addEventListener('change', refreshTimes);
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const fd = new FormData(form);
-
-        // نرسل النموذج إلى FormSubmit
-        fetch(form.action, { method: 'POST', body: fd, mode: 'no-cors' })
-          .then(() => { window.location.href = 'thanks.html'; })
-          .catch(() => { window.location.href = 'thanks.html'; });
-
-        // احتياط إضافي لو حظر المتصفح fetch
-        setTimeout(() => { try { if (!document.hidden) window.location.href = 'thanks.html'; } catch(_) {} }, 2000);
-      });
-    })();
+    // إرسال عبر fetch ثم تحويل مضمون لصفحة الشكر
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      const fd = new FormData(form);
+      fetch(form.action, { method:'POST', body: fd, mode:'no-cors' })
+        .then(() => { window.location.href = 'thanks.html'; })
+        .catch(() => { window.location.href = 'thanks.html'; });
+      setTimeout(() => { if (!document.hidden) window.location.href = 'thanks.html'; }, 1500);
+    });
   </script>
 
-  <!-- أيقونات (اختياري) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
 </body>
 </html>
