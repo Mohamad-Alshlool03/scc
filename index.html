@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مركز الأبرز الإستشاري للعلاج الطبيعي</title>
+  <meta name="description" content="مركز الأبرز الإستشاري للعلاج الطبيعي في إربد: علاج وتأهيل الإصابات الرياضية، خشونة المفاصل، الديسك، والتأهيل العصبي. احجز موعدًا الآن.">
+  <link rel="canonical" href="https://mohamad-alshlool03.github.io/scc/">
+  <meta property="og:title" content="مركز الأبرز الإستشاري للعلاج الطبيعي">
+  <meta property="og:description" content="علاج وتأهيل بإشراف مختصين في إربد. اتصل أو تواصل عبر واتساب.">
+  <meta property="og:url" content="https://mohamad-alshlool03.github.io/scc/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CSP محدثة: أضفنا cdnjs إلى font-src حتى تظهر أيقونات Font Awesome -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' https: data:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+                 connect-src 'self' https://formsubmit.co;
+                 form-action https://formsubmit.co;
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 upgrade-insecure-requests">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome من cdnjs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --brand:#009fe3; --brand-2:#2c7a7b;
+      --bg:#f4f8fb; --card:#ffffff; --text:#1f2937; --muted:#4a5568; --line:#e2e8f0;
+      --pill-bg:#e9f6ff; --pill-border:#cfe9fb; --pill-text:#0f3b59;
+      --hero-text:#ffffff; --btn-top:#0ea5e9; --btn-top-hover:#0284c7;
+    }
+    body.theme-dark{
+      --bg:#0b1324; --card:#0f172a; --text:#e2e8f0; --muted:#cbd5e1; --line:#1f2937;
+      --pill-bg:#0b2940; --pill-border:#1e3a5f; --pill-text:#dbeafe;
+      --hero-text:#e5f2ff; --btn-top:#38bdf8; --btn-top-hover:#0ea5e9;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{ text-size-adjust:100%; scroll-behavior:smooth; }
+    html,body{width:100%; overflow-x:hidden}
+    body{ font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; padding:20px; }
+    .container{ max-width:1200px; margin:0 auto; background:var(--card); border-radius:16px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,.06); border:1px solid var(--line); }
+    .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    header{ position:relative; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:var(--hero-text); text-align:center; padding:64px 20px 96px; }
+    header h1{font-size:2.5rem; font-weight:700}
+    header p{font-size:1.1rem; opacity:.95; margin-top:8px; color:var(--hero-text)}
+    .cta{ margin-top:20px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .btn{ display:inline-flex; align-items:center; gap:8px; border:none; border-radius:10px; cursor:pointer; padding:12px 18px; font-size:1rem; font-weight:700; text-decoration:none; color:#fff; transition:.2s ease; outline:none; }
+    .btn:focus-visible{ box-shadow:0 0 0 3px rgba(255,255,255,.45) }
+    .btn-call{ background:var(--btn-top) } .btn-call:hover{ background:var(--btn-top-hover) }
+    .btn-wa{ background:#16a34a } .btn-wa:hover{ background:#15803d }
+    .btn-book{ background:#f59e0b } .btn-book:hover{ background:#d97706 }
+    .wave{ position:absolute; left:0; right:0; bottom:-1px; width:100%; height:auto; display:block; }
+
+    .contact-section{ margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; padding:40px 24px; }
+    .contact-card{ background:var(--card); border:1px solid var(--line); border-radius:12px; text-align:center; padding:24px 18px; transition:.3s ease; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.05) }
+    .contact-card:hover{ transform:translateY(-3px); box-shadow:0 12px 24px rgba(0,0,0,.08) }
+    .contact-card i{ background:#009fe3; color:#fff; border-radius:50%; width:64px; height:64px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:1.6rem; }
+    body.theme-dark .contact-card i{ background:#0ea5e9; }
+    .contact-card h3{font-size:1.1rem; color:var(--text); margin-bottom:8px}
+    .contact-card p, .contact-card a.data{ font-size:1rem; color:var(--text); margin:0 auto 8px; max-width:100%; }
+
+    .pill{ display:flex; align-items:center; gap:8px; background:var(--pill-bg); border:1px solid var(--pill-border); color:var(--pill-text); padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; width:100%; max-width:100%; margin:0 auto; box-sizing:border-box; overflow-wrap:normal; word-break:normal; white-space:nowrap; direction:ltr; unicode-bidi:plaintext; }
+    @media (max-width:520px){ .pill{ white-space:normal; } }
+
+    .contact-card a.link{ color:#009fe3; text-decoration:none; font-weight:700; transition:.2s }
+    .contact-card a.link:hover{ text-decoration:underline }
+
+    .services{ background:var(--bg); padding:50px 24px; text-align:center }
+    .services h2{ font-size:1.8rem; margin-bottom:28px; color:var(--text) }
+    .services-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px }
+    .service-box{ background:var(--card); border-radius:12px; border:1px solid var(--line); padding:18px 16px; transition:.3s ease; box-shadow:0 6px 18px rgba(0,0,0,.05) }
+    .service-box:hover{ transform:translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.08) }
+    .service-box p{ color:var(--muted); font-size:1.02rem }
+
+    .social{ padding:50px 20px; text-align:center; background:var(--card); border-top:1px solid var(--line) }
+    .social h2{ font-size:1.8rem; margin-bottom:20px; color:var(--text) }
+    .social-icons{ display:flex; justify-content:center; gap:22px; flex-wrap:wrap }
+    @supports not (gap:1rem){ .social-icons{margin:-11px} .social-icon{margin:11px} }
+    .social-icon{ width:68px; height:68px; border-radius:50%; background:#f9fcfe; display:flex; align-items:center; justify-content:center; transition:.2s ease; box-shadow:0 4px 15px rgba(0,0,0,.05); text-decoration:none; border-bottom:none!important; }
+    body.theme-dark .social-icon{ background:#0b2940; }
+    .social-icon:focus-visible{ outline:3px solid rgba(0,0,0,.15) }
+    .social-icon:hover{ transform:scale(1.08) }
+    .social-icon i{ font-size:1.6rem }
+    .whatsapp i{ color:#25d366 } .facebook i{ color:#1877f2 } .instagram i{ color:#e4405f }
+
+    .vcard-btn{ background:var(--brand-2); color:#fff; border:none; border-radius:8px; padding:12px 18px; font-size:1rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; margin-top:22px; transition:.2s; }
+    .vcard-btn:hover{ background:#25625f }
+    .vcard-btn i{ font-size:1.1rem }
+
+    .location{ background:var(--bg); padding:50px 24px; text-align:center }
+    .location h2{ font-size:1.8rem; margin-bottom:22px; color:var(--text) }
+    .location-card{ max-width:620px; margin:0 auto; background:var(--card); border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow:0 8px 20px rgba(0,0,0,.03); }
+    .location-card i{ color:#009fe3; font-size:2rem; margin-bottom:10px }
+    body.theme-dark .location-card i{ color:#0ea5e9; }
+    .location-card p{ font-size:1.05rem; color:var(--muted); margin-bottom:16px; word-break:break-word; overflow-wrap:anywhere }
+    .maps-button{ background:#009fe3; color:#fff; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; transition:.2s; font-size:1rem; }
+    .maps-button:hover{ background:#007bb8 }
+    .maps-button:focus-visible{ outline:3px solid rgba(0,159,227,.35) }
+
+    footer{ background:#2d3748; color:#fff; text-align:center; padding:26px 18px; font-size:.95rem }
+
+    .fab-wa{ position:fixed; z-index:999; right:16px; bottom:16px; width:56px; height:56px; border-radius:50%; background:#25d366; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.2); text-decoration:none; }
+    .fab-wa i{ font-size:1.6rem }
+    .fab-wa:focus-visible{ outline:3px solid rgba(37,211,102,.35) }
+
+    #toTop{ position:fixed; right:16px; bottom:84px; width:44px; height:44px; border:none; border-radius:50%; background:#0ea5e9; color:#fff; display:none; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.18); z-index:999; }
+    #toTop.show{ display:flex; }
+
+    .theme-toggle{
+      position:absolute; top:14px; left:14px; width:38px; height:38px; border:none; border-radius:50%;
+      background:rgba(255,255,255,.2); color:#fff; backdrop-filter:blur(6px);
+      display:flex; align-items:center; justify-content:center; cursor:pointer; transition:.2s ease;
+    }
+    .theme-toggle:hover{ background:rgba(255,255,255,.28) }
+    body.theme-dark .theme-toggle{ background:rgba(0,0,0,.25); color:#fff }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم"><i class="fas fa-moon"></i></button>
+
+      <h1>مركز الأبرز الإستشاري للعلاج الطبيعي</h1>
+      <p>أضف حياة لأيامك</p>
+
+      <div class="cta" role="group" aria-label="روابط التواصل السريعة">
+        <a class="btn btn-call" href="tel:+962797383239" aria-label="اتصال الآن على +962 797 383 239"><i class="fas fa-phone"></i> اتصال الآن</a>
+        <a class="btn btn-wa" href="https://wa.me/962797383239" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب"><i class="fab fa-whatsapp"></i> واتساب</a>
+        <a class="btn btn-book" href="book.html" aria-label="احجز موعدًا الآن"><i class="fas fa-calendar-check"></i> احجز موعدًا الآن</a>
+      </div>
+
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#fff" d="M0,96L60,101.3C120,107,240,117,360,106.7C480,96,600,64,720,58.7C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
+      </svg>
+    </header>
+
+    <section class="contact-section" aria-labelledby="contact-cards">
+      <h2 id="contact-cards" class="sr-only">معلومات التواصل</h2>
+
+      <div class="contact-card">
+        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        <h3>الهاتف </h3>
+        <p><span class="pill">+962 797 383 239</span></p>
+        <a class="link data" href="tel:+962797383239" aria-label="اتصل الآن">اتصل الآن</a>
+        <button type="button" id="copyPhone" class="link" style="margin-top:6px;background:none;border:none;cursor:pointer">نسخ الرقم</button>
+      </div>
+
+      <div class="contact-card">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <h3>البريد الإلكتروني</h3>
+        <a class="pill" href="mailto:sccphysicaltherapy25@gmail.com" aria-label="إرسال بريد">
+          <i class="fas fa-at" aria-hidden="true"></i>
+          <span dir="ltr">sccphysicaltherapy25<wbr>@<wbr>gmail<wbr>.<wbr>com</span>
+        </a>
+      </div>
+
+      <div class="contact-card">
+        <i class="fas fa-clock" aria-hidden="true"></i>
+        <h3>ساعات العمل</h3>
+        <p>السبت - الخميس<br>9:00 ص - 5:00 م</p>
+      </div>
+    </section>
+
+    <section class="services" aria-labelledby="srv">
+      <h2 id="srv">خدماتنا</h2>
+      <div class="services-grid">
+        <div class="service-box"><p>علاج وتأهيل الإصابات الرياضية بمختلف أنواعها</p></div>
+        <div class="service-box"><p>علاج الآلام العضلية</p></div>
+        <div class="service-box"><p>علاج خشونة والتهاب المفاصل</p></div>
+        <div class="service-box"><p>علاج الانزلاق الغضروفي (الديسك)</p></div>
+        <div class="service-box"><p>علاج مشاكل جهاز التوازن</p></div>
+        <div class="service-box"><p>علاج إصابات الجهاز العصبي مثل إصابات النخاع الشوكي والجلطات الدماغية</p></div>
+        <div class="service-box"><p>قسم مختص بعلاج الأطفال مثل حالات الشلل الدماغي</p></div>
+        <div class="service-box"><p>علاج مشاكل انحناء العمود الفقري</p></div>
+        <div class="service-box"><p>التعامل مع حالات التوحد</p></div>
+      </div>
+    </section>
+
+    <section class="social" aria-labelledby="social">
+      <h2 id="social">تواصل معنا</h2>
+      <div class="social-icons">
+        <a href="https://wa.me/962797383239" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer" title="+962797383239" aria-label="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="https://facebook.com/profile.php?id=61579062652707" class="social-icon facebook" target="_blank" rel="noopener noreferrer" onclick="return openFacebook(event)" aria-label="صفحة فيسبوك المركز"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/supreme_ccpt?igsh=c3ZhcnV4ZDVlbmw0" class="social-icon instagram" target="_blank" rel="noopener noreferrer" aria-label="حساب إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      </div>
+
+      <a href="clinic.vcf" class="vcard-btn" download aria-label="حفظ جهة الاتصال"><i class="fas fa-id-card" aria-hidden="true"></i> حفظ جهة الاتصال</a>
+    </section>
+
+    <section class="location" aria-labelledby="loc">
+      <h2 id="loc">موقع العيادة</h2>
+      <div class="location-card">
+        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+        <p>إربد – امتداد شارع الهاشمي باتجاه وحشة سنتر – قرب مخابز نبيل – مجمع الزحراوي الطبي</p>
+        <button class="maps-button" onclick="openMaps()" aria-label="افتح الموقع في خرائط جوجل">افتح في خرائط جوجل</button>
+      </div>
+    </section>
+
+    <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي - جميع الحقوق محفوظة</footer>
+  </div>
+
+  <!-- زر واتساب عائم (موحّد على نفس الرقم) -->
+  <a class="fab-wa" href="https://wa.me/962797383239" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب سريع"><i class="fab fa-whatsapp"></i></a>
+
+  <button id="toTop" aria-label="الرجوع للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    function openMaps(){ window.open("https://maps.app.goo.gl/zevtPC8n4Ms2Sxz89","_blank"); }
+    function openFacebook(e){
+      var pageUrl = "https://facebook.com/profile.php?id=61579062652707";
+      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(isMobile){
+        var deep = "fb://facewebmodal/f?href=" + encodeURIComponent(pageUrl);
+        var t = Date.now();
+        window.location.href = deep;
+        setTimeout(function(){ if(Date.now() - t < 1600){ window.open(pageUrl, "_blank"); } }, 800);
+        e.preventDefault(); return false;
+      }
+      return true;
+    }
+
+    document.getElementById('copyPhone')?.addEventListener('click', () => {
+      navigator.clipboard.writeText('+962797383239').then(() => alert('تم نسخ الرقم')).catch(()=>{});
+    });
+
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => { toTop.classList.toggle('show', window.scrollY > 400); });
+    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const toggleBtn = document.getElementById('themeToggle');
+    const ICON_MOON = '<i class="fas fa-moon"></i>';
+    const ICON_SUN  = '<i class="fas fa-sun"></i>';
+    const saved = localStorage.getItem('theme');
+    if(saved === 'dark'){ document.body.classList.add('theme-dark'); toggleBtn.innerHTML = ICON_SUN; }
+    else { document.body.classList.remove('theme-dark'); toggleBtn.innerHTML = ICON_MOON; }
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      const dark = document.body.classList.contains('theme-dark');
+      toggleBtn.innerHTML = dark ? ICON_SUN : ICON_MOON;
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "مركز الأبرز الإستشاري للعلاج الطبيعي",
+    "description": "علاج وتأهيل الإصابات الرياضية، خشونة المفاصل، الانزلاق الغضروفي، والتأهيل العصبي في إربد.",
+    "url": "https://mohamad-alshlool03.github.io/scc/",
+    "telephone": "+962797383239",
+    "email": "sccphysicaltherapy25@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "إربد",
+      "streetAddress": "امتداد شارع الهاشمي باتجاه وحشة سنتر – قرب مخابز نبيل – مجمع الزحراوي الطبي",
+      "addressCountry": "JO"
+    },
+    "openingHours": "Sa-Th 09:00-17:00",
+    "sameAs": [
+      "https://facebook.com/profile.php?id=61579062652707",
+      "https://www.instagram.com/supreme_ccpt"
+    ]
+  }
+  </script>
+</body>
+</html>
