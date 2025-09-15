@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>احجز موعدًا الآن | مركز الأبرز</title>
 
+  <!-- سياسة أمان (CSP) تناسب الموارد المستخدمة -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' https: data:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+                 connect-src 'self' https://formsubmit.co;
+                 form-action https://formsubmit.co;
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 upgrade-insecure-requests">
+
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -61,7 +74,7 @@
     header h1{ margin:0 0 6px; font-size:1.8rem }
     header p{ margin:0; opacity:.95 }
 
-    /* زر تبديل الثيم صغير وغير ملفت */
+    /* زر تبديل الثيم */
     .theme-toggle{
       position:absolute; top:12px; left:12px;
       width:38px; height:38px; border:none; border-radius:50%;
@@ -104,7 +117,6 @@
 <body>
   <div class="wrap">
     <header>
-      <!-- زر تبديل الثيم -->
       <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">
         <i class="fas fa-moon"></i>
       </button>
@@ -114,38 +126,42 @@
     </header>
 
     <div class="content">
-      <!-- ✉️ يُرسل إلى بريدك عبر FormSubmit -->
+      <!-- يُرسل عبر FormSubmit إلى بريدك (بدّله لاحقًا لإيميل المركز) -->
       <form id="bookingForm"
             action="https://formsubmit.co/mshlool684@gmail.com"
-            method="POST" accept-charset="UTF-8" novalidate>
+            method="POST" accept-charset="UTF-8">
         <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
+        <!-- أزلنا تعطيل الكابتشا ليعمل reCAPTCHA التلقائي -->
+        <!-- <input type="hidden" name="_captcha" value="false"> -->
         <input type="hidden" name="_autoresponse"
                value="مرحبًا! تم استلام طلب الحجز. سنتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً).">
         <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
+        <!-- honeypot لمنع البوتات -->
         <input type="text" name="_honey" style="display:none">
 
         <div>
           <label for="name">الاسم الكامل *</label>
-          <input id="name" name="الاسم الكامل" type="text" required>
+          <input id="name" name="الاسم الكامل" type="text" required autocomplete="name">
         </div>
 
         <div>
           <label for="phone">رقم الهاتف *</label>
-          <input id="phone" name="رقم الهاتف" type="tel" inputmode="tel" required>
+          <input id="phone" name="رقم الهاتف" type="tel"
+                 inputmode="tel" autocomplete="tel" required
+                 pattern="^(?:\\+?9627\\d{8}|07\\d{8})$"
+                 title="أدخل رقمًا أردنيًا مثل 07XXXXXXXX أو ‎+9627XXXXXXXX">
         </div>
 
         <div>
           <label for="email">البريد الإلكتروني</label>
-          <input id="email" name="email" type="email">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="اختياري">
         </div>
 
         <div>
           <label for="service">الخدمة المطلوبة *</label>
           <select id="service" name="الخدمة المطلوبة" required>
             <option value="" selected disabled>اختر خدمة</option>
-            <!-- نفس الخدمات الموجودة في الصفحة الرئيسية -->
             <option>علاج وتأهيل الإصابات الرياضية بمختلف أنواعها</option>
             <option>علاج الآلام العضلية</option>
             <option>علاج خشونة والتهاب المفاصل</option>
@@ -169,7 +185,6 @@
           <select id="time" name="الوقت المفضل" required>
             <option value="" selected disabled>اختر وقتًا</option>
           </select>
-          <!-- لا يوجد سطر ملاحظة ظاهر للعميل -->
         </div>
 
         <div class="full">
@@ -185,8 +200,8 @@
         </div>
 
         <div class="actions full">
-          <button type="submit"><i class="fa-solid fa-paper-plane"></i> إرسال الطلب</button>
-          <a class="back" href="index.html">العودة للرئيسية</a>
+          <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i> إرسال الطلب</button>
+          <a class="back" href="index.html" rel="noopener">العودة للرئيسية</a>
         </div>
       </form>
     </div>
@@ -195,11 +210,12 @@
   </div>
 
   <script>
-    /* ===== الحجز: ساعات على رأس الساعة 9–5 ===== */
+    /* ساعات الحجز: 9–17 وعلى رأس الساعة */
     const START = 9, END = 17;
     const form = document.getElementById('bookingForm');
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
+    const submitBtn = document.getElementById('submitBtn');
 
     const today = new Date(); today.setHours(0,0,0,0);
     dateInput.min = today.toISOString().split('T')[0];
@@ -211,13 +227,12 @@
       timeSelect.innerHTML = '<option value="" selected disabled>اختر وقتًا</option>';
       const now = new Date();
       const nextHour = now.getMinutes()>0 ? now.getHours()+1 : now.getHours();
-
       for (let h=START; h<=END; h++){
         const hh = String(h).padStart(2,'0') + ':00';
         const opt = document.createElement('option');
         opt.value = hh;
         opt.textContent = labelFor(h);
-        opt.disabled = forToday && h < nextHour;   // تعطيل الساعات الماضية لليوم الحالي
+        opt.disabled = forToday && h < nextHour;
         timeSelect.appendChild(opt);
       }
     }
@@ -229,31 +244,29 @@
       buildOptions(isSameDay(chosen, today));
     }
 
-    // تهيئة أولية
     dateInput.value = dateInput.min;
     refreshTimes();
     dateInput.addEventListener('change', refreshTimes);
 
-    // إرسال النموذج (FormSubmit)
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      if(!form.checkValidity()){ form.reportValidity(); return; }
-      const fd = new FormData(form);
-      fetch(form.action, { method:'POST', body: fd, mode:'no-cors' })
-        .finally(() => { window.location.href = 'thanks.html'; });
-      setTimeout(() => { if (!document.hidden) window.location.href = 'thanks.html'; }, 1500);
+    /* تطبيع رقم الهاتف: 07XXXXXXXX -> +9627XXXXXXXX */
+    form.addEventListener('submit', function(){
+      // منع الإرسال المزدوج
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'جاري الإرسال…';
+
+      const phone = document.getElementById('phone');
+      let v = phone.value.replace(/\s+/g,'');
+      if (/^07\d{8}$/.test(v)) { v = '+962' + v.slice(1); }
+      phone.value = v;
     });
 
-    /* ===== تبديل الثيم (Light/Dark) مع حفظ الاختيار ===== */
+    /* تبديل الثيم */
     const toggleBtn = document.getElementById('themeToggle');
     const ICON_MOON = '<i class="fas fa-moon"></i>';
     const ICON_SUN  = '<i class="fas fa-sun"></i>';
-
-    // الافتراضي Light دائمًا
-    const saved = localStorage.getItem('theme'); // "dark" | "light" | null
+    const saved = localStorage.getItem('theme');
     if(saved === 'dark'){ document.body.classList.add('theme-dark'); toggleBtn.innerHTML = ICON_SUN; }
     else { document.body.classList.remove('theme-dark'); toggleBtn.innerHTML = ICON_MOON; }
-
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('theme-dark');
       const dark = document.body.classList.contains('theme-dark');
