@@ -149,7 +149,7 @@
           <label for="phone">رقم الهاتف *</label>
           <input id="phone" name="رقم الهاتف" type="tel"
                  inputmode="tel" autocomplete="tel" required
-                 pattern="^(?:\\+?9627\\d{8}|07\\d{8})$"
+                 pattern="^(?:\+?9627[0-9٠-٩]{8}|07[0-9٠-٩]{8})$"
                  title="أدخل رقمًا أردنيًا مثل 07XXXXXXXX أو ‎+9627XXXXXXXX">
         </div>
 
@@ -256,7 +256,12 @@
 
       const phone = document.getElementById('phone');
       let v = phone.value.replace(/\s+/g,'');
-      if (/^07\d{8}$/.test(v)) { v = '+962' + v.slice(1); }
+      // نحول فقط إذا كانت بصيغة 07XXXXXXXX (أرقام عربية أو لاتينية)
+      if (/^07[0-9٠-٩]{8}$/.test(v)) {
+        // استبدال الأرقام العربية إن وجدت إلى 0-9
+        v = v.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+        v = '+962' + v.slice(1);
+      }
       phone.value = v;
     });
 
