@@ -5,21 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>احجز موعدًا الآن | مركز الأبرز</title>
 
-  <!-- سياسة أمان (CSP) تناسب الموارد المستخدمة -->
+  <!-- Referrer Policy لتقليل تسريب الإحالة -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- سياسة أمان (CSP) مُشددة ومتوافقة مع الموارد -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' https: data:;
                  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 font-src  'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
                  script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
                  connect-src 'self' https://formsubmit.co;
                  form-action https://formsubmit.co;
+                 object-src 'none';
+                 frame-src 'none';
+                 manifest-src 'self';
                  frame-ancestors 'none';
                  base-uri 'self';
                  upgrade-insecure-requests">
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome من cdnjs + مكان SRI (اختياري قوي) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="<HASH>"
+        crossorigin="anonymous">
 
   <style>
     /* ========= نظام ألوان عبر متغيرات ========= */
@@ -132,13 +142,12 @@
             method="POST" accept-charset="UTF-8">
         <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
         <input type="hidden" name="_template" value="table">
-        <!-- أزلنا تعطيل الكابتشا ليعمل reCAPTCHA التلقائي -->
-        <!-- <input type="hidden" name="_captcha" value="false"> -->
+        <!-- reCAPTCHA التلقائي مفعّل (لم نعد نُعطّل الكابتشا) -->
         <input type="hidden" name="_autoresponse"
                value="مرحبًا! تم استلام طلب الحجز. سنتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً).">
         <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
-        <!-- honeypot لمنع البوتات -->
-        <input type="text" name="_honey" style="display:none">
+        <!-- honeypot لمنع البوتات (بدون إكمال تلقائي) -->
+        <input type="text" name="_honey" style="display:none" autocomplete="off">
 
         <div>
           <label for="name">الاسم الكامل *</label>
@@ -149,8 +158,8 @@
           <label for="phone">رقم الهاتف *</label>
           <input id="phone" name="رقم الهاتف" type="tel"
                  inputmode="tel" autocomplete="tel" required
-                 pattern="^(?:\+?9627[0-9٠-٩]{8}|07[0-9٠-٩]{8})$"
-                 title="أدخل رقمًا أردنيًا مثل 07XXXXXXXX أو ‎+9627XXXXXXXX">
+                 pattern="^(?:\+(?:20|212|213|216|218|222|249|253|252|269|967|968|971|973|974|965|966|964|963|962|961|970)[0-9٠-٩]{6,12}|07[0-9٠-٩]{8})$"
+                 title="فقط من الدول العربية: اكتب بالصّيغة الدولية مثل +20… أو +971… أو +962… (أرقام عربية ٠-٩ أو لاتينية 0-9). للأردن نقبل أيضًا 07XXXXXXXX.">
         </div>
 
         <div>
@@ -210,8 +219,8 @@
   </div>
 
   <script>
-    /* ساعات الحجز: 9–17 وعلى رأس الساعة */
-    const START = 9, END = 17;
+    /* ساعات الحجز: 9–16 وعلى رأس الساعة */
+    const START = 9, END = 16;
     const form = document.getElementById('bookingForm');
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
@@ -248,7 +257,10 @@
     refreshTimes();
     dateInput.addEventListener('change', refreshTimes);
 
-    /* تطبيع رقم الهاتف: 07XXXXXXXX -> +9627XXXXXXXX */
+    /* تطبيع رقم الهاتف:
+       - الأردن: 07XXXXXXXX -> +9627XXXXXXXX
+       - غير ذلك: نطلب الصيغة الدولية +CC........ (الدول العربية فقط وفق الpattern)
+    */
     form.addEventListener('submit', function(){
       // منع الإرسال المزدوج
       submitBtn.disabled = true;
@@ -256,12 +268,15 @@
 
       const phone = document.getElementById('phone');
       let v = phone.value.replace(/\s+/g,'');
-      // نحول فقط إذا كانت بصيغة 07XXXXXXXX (أرقام عربية أو لاتينية)
-      if (/^07[0-9٠-٩]{8}$/.test(v)) {
-        // استبدال الأرقام العربية إن وجدت إلى 0-9
-        v = v.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+
+      // استبدال الأرقام العربية إلى 0-9 قبل أي معالجة
+      v = v.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+
+      // الأردن فقط بصيغة محلية: نحول 07XXXXXXXX إلى +9627XXXXXXXX
+      if (/^07\d{8}$/.test(v)) {
         v = '+962' + v.slice(1);
       }
+
       phone.value = v;
     });
 
