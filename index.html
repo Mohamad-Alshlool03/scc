@@ -11,16 +11,21 @@
   <meta property="og:url" content="https://mohamad-alshlool03.github.io/scc/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- لا تسريب لمعلومات الإحالة إلا عند نفس الأصل/عبر النطاق -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- CSP محدثة: أضفنا cdnjs إلى font-src حتى تظهر أيقونات Font Awesome -->
+  <!-- CSP مُحدّثة ومُشددة -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' https: data:;
                  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 font-src  'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
                  script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
                  connect-src 'self' https://formsubmit.co;
                  form-action https://formsubmit.co;
+                 object-src 'none';
+                 frame-src 'none';
+                 manifest-src 'self';
                  frame-ancestors 'none';
                  base-uri 'self';
                  upgrade-insecure-requests">
@@ -29,8 +34,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome من cdnjs -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome من cdnjs + مكان SRI (اختياري قوي) -->
+  <!-- لاستبدال <HASH> بقيمة integrity الصحيحة انسخها من صفحة cdnjs لنفس الإصدار 6.4.0 -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="<HASH>"
+        crossorigin="anonymous">
 
   <style>
     :root{
@@ -73,8 +82,13 @@
     .pill{ display:flex; align-items:center; gap:8px; background:var(--pill-bg); border:1px solid var(--pill-border); color:var(--pill-text); padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; width:100%; max-width:100%; margin:0 auto; box-sizing:border-box; overflow-wrap:normal; word-break:normal; white-space:nowrap; direction:ltr; unicode-bidi:plaintext; }
     @media (max-width:520px){ .pill{ white-space:normal; } }
 
-    .contact-card a.link{ color:#009fe3; text-decoration:none; font-weight:700; transition:.2s }
-    .contact-card a.link:hover{ text-decoration:underline }
+    /* نفس ستايل الرابط لزر النسخ أيضًا (حتى ما يختفي في الثيم الداكن) */
+    .contact-card a.link,
+    .contact-card button.link{
+      color:#009fe3; text-decoration:none; font-weight:700; transition:.2s; background:none; border:none; padding:0; cursor:pointer;
+    }
+    .contact-card a.link:hover,
+    .contact-card button.link:hover{ text-decoration:underline }
 
     .services{ background:var(--bg); padding:50px 24px; text-align:center }
     .services h2{ font-size:1.8rem; margin-bottom:28px; color:var(--text) }
@@ -153,7 +167,7 @@
         <h3>الهاتف </h3>
         <p><span class="pill">+962 797 383 239</span></p>
         <a class="link data" href="tel:+962797383239" aria-label="اتصل الآن">اتصل الآن</a>
-        <button type="button" id="copyPhone" class="link" style="margin-top:6px;background:none;border:none;cursor:pointer">نسخ الرقم</button>
+        <button type="button" id="copyPhone" class="link" style="margin-top:6px">نسخ الرقم</button>
       </div>
 
       <div class="contact-card">
