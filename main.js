@@ -1,23 +1,41 @@
-/* ========= فلاش عند تبديل الثيم ========= */
+/* ========= فلاش عند تبديل الثيم + أيقونة FA مع Fallback ========= */
 (function(){
   const toggleBtn = document.getElementById('themeToggle');
   if(!toggleBtn) return;
-  const ICON_MOON = '<i class="fas fa-moon" aria-hidden="true"></i>';
-  const ICON_SUN  = '<i class="fas fa-sun" aria-hidden="true"></i>';
 
+  // نتحقق إن كانت Font Awesome محمّلة، وإلا نستعمل إيموجي
+  function hasFA(){
+    const test = document.createElement('i');
+    test.className = 'fas fa-moon';
+    test.style.position = 'absolute';
+    test.style.opacity  = '0';
+    document.body.appendChild(test);
+    const fam = (getComputedStyle(test).fontFamily || '');
+    test.remove();
+    return /Font Awesome|FontAwesome/i.test(fam);
+  }
+  const USE_FA    = hasFA();
+  const ICON_MOON = USE_FA ? '<i class="fas fa-moon" aria-hidden="true"></i>' : '🌙';
+  const ICON_SUN  = USE_FA ? '<i class="fas fa-sun"  aria-hidden="true"></i>' : '☀️';
+
+  // ✅ الافتراضي: داكن إذا ما في تفضيل محفوظ
   const saved = localStorage.getItem('theme');
-  if(saved === 'dark'){ document.body.classList.add('theme-dark'); toggleBtn.innerHTML = ICON_SUN; }
-  else { document.body.classList.remove('theme-dark'); toggleBtn.innerHTML = ICON_MOON; }
+  if (saved === 'light') {
+    document.body.classList.remove('theme-dark');
+    toggleBtn.innerHTML = ICON_MOON;
+  } else {
+    document.body.classList.add('theme-dark');
+    toggleBtn.innerHTML = ICON_SUN;
+  }
 
   toggleBtn.addEventListener('click', () => {
     // فلاش لطيف
     document.body.classList.add('theme-flip');
     setTimeout(()=>document.body.classList.remove('theme-flip'), 450);
 
-    document.body.classList.toggle('theme-dark');
-    const dark = document.body.classList.contains('theme-dark');
-    toggleBtn.innerHTML = dark ? ICON_SUN : ICON_MOON;
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    const nowDark = document.body.classList.toggle('theme-dark');
+    toggleBtn.innerHTML = nowDark ? ICON_SUN : ICON_MOON;
+    localStorage.setItem('theme', nowDark ? 'dark' : 'light');
   });
 })();
 
@@ -67,6 +85,12 @@
   const timeSelect = document.getElementById('time');
   const submitBtn = document.getElementById('submitBtn');
 
+  // حوّل _next النسبي إلى رابط كامل على نفس الدومين الحالي (لو كنت مستخدم value="thanks.html")
+  const nextInput = form.querySelector('input[name="_next"]');
+  if (nextInput && nextInput.value) {
+    nextInput.value = new URL(nextInput.value, window.location.href).href;
+  }
+
   const today = new Date(); today.setHours(0,0,0,0);
   function isSameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
   function labelFor(h){ if(h===0)return"12:00 ص"; if(h===12)return"12:00 م"; if(h<12)return String(h).padStart(2,'0')+":00 ص"; return String(h-12).padStart(2,'0')+":00 م"; }
@@ -95,7 +119,6 @@
     const now = new Date();
     const todayISO = new Date().toISOString().split('T')[0];
     dateInput.min = todayISO;
-
     if (!dateInput.value) dateInput.value = todayISO;
 
     const isToday = isSameDay(new Date(dateInput.value + 'T00:00'), now);
@@ -110,7 +133,7 @@
   refreshTimes();
   dateInput.addEventListener('change', refreshTimes);
 
-  /* --- تحقق فوري ورسائل خطأ أنيقة --- */
+  /* تحقق فوري */
   const fields = ['name','phone','service','date','time'];
   function msgFor(el){
     if(el.validity.valueMissing) return 'هذا الحقل مطلوب.';
@@ -129,15 +152,13 @@
     const err = el.parentElement.querySelector('.field-error');
     if(err) err.remove();
   }
-
   fields.forEach(id=>{
     const el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', ()=>{ el.checkValidity() ? clearError(el) : showError(el, msgFor(el)); });
-    el.addEventListener('blur', ()=>{ el.checkValidity() ? clearError(el) : showError(el, msgFor(el)); });
+    el.addEventListener('blur',  ()=>{ el.checkValidity() ? clearError(el) : showError(el, msgFor(el)); });
   });
 
-  // تطبيع رقم الهاتف ومنع الإرسال المزدوج + spinner
   form.addEventListener('submit', function(e){
     // تطبيع الهاتف
     const phone = document.getElementById('phone');
@@ -170,4 +191,113 @@
       submitBtn.disabled = true;
     }
   });
+})();
+
+/* ========= صفحة شركات التأمين: تحميل الشعارات + فلترة (نص/نوع) + رابط لكل بطاقة ========= */
+(function(){
+  const list  = document.getElementById('insureList');
+  const input = document.getElementById('insureFilter');
+  const count = document.getElementById('insureCount');
+  const typeBtns = document.querySelectorAll('.type-btn');
+  if(!list) return;
+
+  let activeType = 'all';
+
+  const cards = Array.from(list.querySelectorAll('.brand-card'));
+  cards.forEach(card=>{
+    const name     = card.dataset.name || 'جهة';
+    const domain   = (card.dataset.domain || '').trim();
+    const fallback = card.dataset.fallback || '';
+    const url      = (card.dataset.url || '').trim();
+
+    const fig = document.createElement('figure');
+    const img = document.createElement('img');
+    img.alt = name; img.loading = 'lazy';
+
+    // 1) Clearbit  2) fallback (Brandfetch/ويكيميديا)  3) أحرف
+    if (domain) img.src = `https://logo.clearbit.com/${domain}`;
+    else if (fallback) img.src = fallback;
+
+    let triedFallback = false;
+    img.addEventListener('error', ()=>{
+      if (fallback && !triedFallback){
+        triedFallback = true;
+        img.src = fallback;
+        return;
+      }
+      img.remove();
+      const ph = document.createElement('div');
+      ph.className = 'fallback';
+      const initials = name.replace(/[^\p{L}\p{N}\s]/gu,'').trim()
+                           .split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+      ph.textContent = initials || '—';
+      fig.prepend(ph);
+    });
+
+    const cap = document.createElement('figcaption');
+    const arabic = name.split(/\s{2,}|  | – | - /)[0];
+    cap.textContent = arabic || name;
+
+    fig.append(img, cap);
+
+    if (url) {
+      const a = document.createElement('a');
+      a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.setAttribute('aria-label', `زيارة موقع ${arabic || name}`);
+      a.appendChild(fig);
+      card.appendChild(a);
+    } else {
+      card.appendChild(fig);
+    }
+  });
+
+  function apply(){
+    const q = (input?.value || '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card=>{
+      const name = (card.dataset.name || '').toLowerCase();
+      const type = (card.dataset.type || 'insurer');
+      const matchText = !q || name.includes(q);
+      const matchType = activeType === 'all' || type === activeType;
+      const show = matchText && matchType;
+      card.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    if(count) count.textContent = String(visible);
+  }
+
+  // تفعيل أزرار الفلترة حسب النوع
+  typeBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      typeBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeType = btn.dataset.type || 'all';
+      btn.setAttribute('aria-selected','true');
+      typeBtns.forEach(b=>{ if(b!==btn) b.removeAttribute('aria-selected'); });
+      apply();
+    });
+  });
+
+  apply();
+  input?.addEventListener('input', apply);
+})();
+
+/* ========= قائمة الرئيسية (hamburger) داخل الهيدر ========= */
+(function(){
+  const toggle = document.getElementById('menuToggle');
+  const panel  = document.getElementById('menuPanel');
+  if(!toggle || !panel) return;
+
+  function close(){ panel.classList.remove('show'); toggle.setAttribute('aria-expanded','false'); }
+  function open(){ panel.classList.add('show'); toggle.setAttribute('aria-expanded','true'); }
+
+  toggle.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    panel.classList.toggle('show');
+    toggle.setAttribute('aria-expanded', panel.classList.contains('show') ? 'true':'false');
+  });
+  document.addEventListener('click', (e)=>{
+    if(panel.classList.contains('show') && !panel.contains(e.target) && e.target!==toggle){ close(); }
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
 })();
