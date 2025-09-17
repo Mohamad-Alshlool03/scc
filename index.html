@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#009fe3">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- CSP مشددة (لا inline) -->
+  <!-- CSP مشددة -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' https: data:;
@@ -42,17 +42,26 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  <!-- نمط وملف سكربت خارجيان -->
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="icons/favicon.png" type="image/png">
 </head>
-<body>
+<body class="theme-dark">
   <div class="container">
     <header>
-      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم"><i class="fas fa-moon" aria-hidden="true"></i></button>
+      <!-- زر الثيم (يسار) -->
+      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
+
+      <!-- زر القائمة الصحيح داخل الهيدر (يمين) -->
+      <button id="menuToggle" class="menu-toggle" aria-label="القائمة" aria-expanded="false" title="القائمة">☰</button>
+      <nav id="menuPanel" class="menu-panel" aria-label="القائمة">
+        <a href="index.html">الرئيسية</a>
+        <a href="book.html">احجز موعدًا</a>
+        <a href="insurers.html">شركات التأمين المعتمدة</a>
+      </nav>
 
       <h1>مركز الأبرز الإستشاري للعلاج الطبيعي</h1>
       <p>أضف حياة لأيامك</p>
@@ -118,8 +127,21 @@
         <a href="https://www.instagram.com/supreme_ccpt" class="social-icon instagram" target="_blank" rel="noopener noreferrer" aria-label="حساب إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></a>
       </div>
 
+
+
       <a href="clinic.vcf" class="vcard-btn" download aria-label="حفظ جهة الاتصال"><i class="fas fa-id-card" aria-hidden="true"></i> حفظ جهة الاتصال</a>
     </section>
+	
+	<section class="partners" aria-labelledby="partners">
+  <h2 id="partners">شركاؤنا</h2>
+  <div class="partners-logos">
+    <img src="https://logo.clearbit.com/nathealth.net" alt="نات هيلث" loading="lazy">
+    <img src="https://logo.clearbit.com/gig.com.jo" alt="GIG" loading="lazy">
+    <img src="https://logo.clearbit.com/globemedgroup.com" alt="GlobeMed Jordan" loading="lazy">
+    <img src="https://logo.clearbit.com/jea.org.jo" alt="نقابة المهندسين الأردنيين" loading="lazy">
+  </div>
+  <a class="partners-cta" href="insurers.html" rel="noopener">عرض جميع الشركات</a>
+</section>
 
     <section class="location" aria-labelledby="loc">
       <h2 id="loc">موقع العيادة</h2>
@@ -138,7 +160,7 @@
 
   <button id="toTop" aria-label="الرجوع للأعلى"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
-  <!-- سكربت موحّد -->
+  <!-- سكربتات -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
           integrity="sha512-r2cV8oP4n5o1Rkzd2t8m9Z1aX1s6gVtFz0uG3qHf5KQfFh2b+2b8mJm8QpH2W2f0Qe3uRj0eJb1bYp1s7vCq3g=="
           crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
