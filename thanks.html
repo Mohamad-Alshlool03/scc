@@ -30,6 +30,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 
+  <!-- (اختياري) أيقونة الموقع -->
+  <link rel="icon" href="icons/favicon.png" type="image/png">
+
   <style>
     /* ألوان أساسية */
     :root{
@@ -37,6 +40,7 @@
       --bg:#f4f8fb; --card:#ffffff; --text:#1f2937; --muted:#475569; --line:#e2e8f0;
       --hero-fg:#ffffff;
       --shadow:0 10px 30px rgba(0,0,0,.06);
+      color-scheme: light dark; /* يدعم الثيمين لعناصر المتصفح */
     }
     /* ثيم داكن تلقائي حسب نظام الجهاز (بدون JS) */
     @media (prefers-color-scheme: dark){
@@ -55,6 +59,9 @@
       animation:fadeIn .5s ease both;
     }
     @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; scroll-behavior:auto}
+    }
 
     /* هيدر متدرّج + موجة */
     header{
@@ -77,7 +84,7 @@
     /* أيقونة نجاح SVG */
     .success-ico{
       display:inline-grid; place-items:center; width:82px; height:82px;
-      margin-inline:auto  ; margin-top:-56px; margin-bottom:8px;
+      margin-inline:auto; margin-top:-56px; margin-bottom:8px;
       border-radius:50%;
       background:conic-gradient(from 180deg at 50% 50%, #16a34a, #22c55e, #16a34a);
       box-shadow:0 10px 20px rgba(0,0,0,.15);
@@ -97,6 +104,7 @@
     }
     .btn-home{ background:#0ea5e9 } .btn-home:hover{ background:#0284c7 }
     .btn-wa{ background:#16a34a } .btn-wa:hover{ background:#15803d }
+    .btn:focus-visible{ outline:3px solid rgba(0,159,227,.35); outline-offset:2px }
 
     footer{ text-align:center; color:#fff; background:#2d3748; padding:18px 12px; font-size:.95rem; margin-top:auto }
   </style>
@@ -126,7 +134,7 @@
 
       <div class="actions" role="group" aria-label="روابط سريعة">
         <a class="btn btn-home" href="index.html" rel="noopener">العودة للرئيسية</a>
-        <a class="btn btn-wa" href="https://wa.me/962797383239" target="_blank" rel="noopener">التواصل عبر واتساب</a>
+        <a class="btn btn-wa" href="https://wa.me/962797383239" target="_blank" rel="noopener" aria-label="التواصل عبر واتساب على 962797383239">التواصل عبر واتساب</a>
       </div>
     </section>
   </main>
