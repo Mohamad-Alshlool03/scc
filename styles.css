@@ -203,70 +203,13 @@ button[type="submit"].loading::after{
   .social-icon:hover, .contact-card:hover, .service-box:hover{ transform:none }
 }
 
-/* ===== صفحة شركات التأمين – تحسين كامل ومتجاوب ===== */
-
-/* نزول بسيط للموجة */
+/* ====== صفحة شركات التأمين ====== */
 body.page-insurers header{ padding-bottom:120px }
-
-/* عدّاد أنيق */
-.badge{
-  background:color-mix(in srgb, var(--brand), white 70%);
-  color:#0b2a3a; border:1px solid color-mix(in srgb, var(--brand), white 55%);
-  padding:8px 12px; border-radius:999px; font-weight:800; white-space:nowrap;
-}
-body.theme-dark .badge{ color:#e6f7ff }
-
-/* شبكة البطاقات */
-.brand-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px }
-.brand-card{
-  background:var(--card); border:1px solid var(--line); border-radius:18px;
-  display:flex; align-items:center; justify-content:center; flex-direction:column;
-  padding:22px; gap:8px; min-height:170px; text-align:center;
-  box-shadow:0 6px 16px rgba(0,0,0,.04); transition:.2s;
-}
-.brand-card:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,.08) }
-.brand-card figure{ margin:0 }
-.brand-card img{ max-width:78%; max-height:64px; display:block; object-fit:contain; margin:0 auto 6px }
-.brand-card .fallback{
-  width:72px; height:72px; border-radius:18px; display:grid; place-items:center; margin:0 auto 6px;
-  font-weight:800; color:#fff; background:linear-gradient(135deg,#0ea5e9,#2c7a7b); font-size:1.05rem;
-}
-.brand-card figcaption{ font-weight:800; color:var(--text) }
-
-/* شريط الفلاتر العام */
 .insure-filter{
   display:flex; align-items:center; justify-content:space-between;
-  gap:12px; margin:6px 0 18px; flex-wrap:wrap;
+  gap:12px; margin:6px 0 18px;
 }
-
-/* أزرار التصنيف كسطر واحد مع سحب جانبي */
-.type-tabs{
-  display:flex; gap:8px; align-items:center;
-  overflow-x:auto; -webkit-overflow-scrolling:touch;
-  padding-bottom:4px; margin:4px 0;
-  scrollbar-width:none;
-}
-.type-tabs::-webkit-scrollbar{ display:none }
-
-.type-btn{
-  padding:10px 14px;
-  border-radius:999px;
-  font-weight:800;
-  border:1px solid var(--line);
-  background:var(--card); color:var(--text);
-  cursor:pointer; white-space:nowrap;
-  transition:.2s ease;
-}
-.type-btn:hover{ transform:translateY(-1px) }
-.type-btn.active{
-  background:color-mix(in srgb, var(--brand), white 85%);
-  border-color:color-mix(in srgb, var(--brand), white 70%);
-  color:#0b2a3a;
-}
-body.theme-dark .type-btn.active{ color:#e6f7ff }
-
-/* البحث */
-.insure-filter .search{ position:relative; flex:1 1 auto; min-width:240px }
+.insure-filter .search{ position:relative; flex:1 1 auto }
 .insure-filter .search-ico{
   position:absolute; right:12px; top:50%; transform:translateY(-50%);
   opacity:.6; pointer-events:none; font-size:1rem;
@@ -280,21 +223,25 @@ body.theme-dark .type-btn.active{ color:#e6f7ff }
   border-color:color-mix(in srgb, var(--brand), #fff 10%);
   box-shadow:0 0 0 3px color-mix(in srgb, var(--brand), transparent 70%);
 }
-
-/* موبايل: ترتيب عمودي مُريح */
-@media (max-width: 600px){
-  .insure-filter{
-    flex-direction:column; align-items:stretch;
-    gap:10px; margin-top:10px;
-  }
-  .type-tabs{ order:1 }
-  .insure-filter .search{ order:2 }
-  .badge{ order:3; align-self:flex-start }
-
-  .brand-grid{ grid-template-columns:1fr }
-  .brand-card{ min-height:150px; padding:18px }
+.badge{
+  background:color-mix(in srgb, var(--brand), white 70%);
+  color:#0b2a3a; border:1px solid color-mix(in srgb, var(--brand), white 55%);
+  padding:8px 12px; border-radius:999px; font-weight:800; white-space:nowrap;
 }
-
+.brand-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px }
+.brand-card{
+  background:var(--card); border:1px solid var(--line); border-radius:18px;
+  display:flex; align-items:center; justify-content:center; flex-direction:column;
+  padding:22px; gap:8px; min-height:170px; text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.04); transition:.2s;
+}
+.brand-card:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,.08) }
+.brand-card img{ max-width:80%; max-height:64px; display:block; object-fit:contain; margin-bottom:4px }
+.brand-card .fallback{
+  width:72px; height:72px; border-radius:18px; display:grid; place-items:center; margin-bottom:6px;
+  font-weight:800; color:#fff; background:linear-gradient(135deg,#0ea5e9,#2c7a7b); font-size:1.05rem;
+}
+.brand-card figcaption{ font-weight:800; color:var(--text) }
 
 /* ====== زر القائمة داخل الهيدر ====== */
 header{ position:relative }
@@ -348,4 +295,63 @@ body.theme-dark .menu-toggle{ background:rgba(0,0,0,.25) }
 .partners-logos img:hover{ filter:none; opacity:1 }
 .partners-cta{ display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#fff; text-decoration:none; font-weight:800 }
 .partners-cta:hover{ background:#0ea5e9 }
+/* === صفحة شركات التأمين – تحسين ترتيب الجوال فقط === */
+
+/* لو مش موجود عندك مسبقًا، يضمن إن الموجة ما تغطي المحتوى */
+body.page-insurers header{ padding-bottom:120px; }
+
+/* شريط البحث + الفلاتر + العدّاد */
+.insure-filter{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  margin:6px 0 18px;
+}
+
+.insure-filter .search{ position:relative; flex:1 1 360px; }
+.insure-filter .search input{
+  width:100%; padding:12px 40px 12px 14px;
+  border:1px solid var(--input-border); border-radius:12px;
+  background:var(--input-bg); color:var(--input-text);
+  outline:none; transition:border-color .2s ease, box-shadow .2s ease;
+}
+.insure-filter .search input:focus{
+  border-color:color-mix(in srgb, var(--brand), #fff 10%);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--brand), transparent 70%);
+}
+.insure-filter .search-ico{
+  position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  opacity:.6; pointer-events:none; font-size:1rem;
+}
+
+/* أزرار النوع */
+.type-filter{ display:flex; flex-wrap:wrap; gap:8px; }
+.type-btn{
+  padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:800;
+  border:1px solid color-mix(in srgb, var(--brand), white 55%);
+  background:color-mix(in srgb, var(--brand), white 88%); color:#0b2a3a;
+}
+body.theme-dark .type-btn{
+  color:#eaf6ff; background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.12);
+}
+.type-btn.active{ background:var(--brand); color:#fff; border-color:transparent; }
+
+/* عدّاد الجهات */
+.badge{ margin-inline-start:auto; }
+
+/* ضبط الجوال */
+@media (max-width: 768px){
+  .insure-filter{
+    display:grid; grid-template-columns:1fr; gap:10px;
+  }
+  .badge{ justify-self:start; } /* يظهر تحت الفلاتر مباشرة */
+  .type-filter{
+    overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px;
+  }
+  .type-filter::-webkit-scrollbar{ display:none; }
+  .type-btn{ flex:0 0 auto; white-space:nowrap; }
+
+  /* كروت الشركات صف واحد لسهولة اللمس */
+  .brand-grid{ grid-template-columns:1fr; gap:14px; }
+  .brand-card{ min-height:150px; padding:18px; }
+  .brand-card img{ max-height:56px; }
+}
 
