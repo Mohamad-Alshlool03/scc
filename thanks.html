@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تم إرسال طلبك بنجاح | مركز الأبرز</title>
+
+  <!-- منع فهرسة صفحة الشكر -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- تقليل تسريب معلومات الإحالة -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#009fe3">
+
+  <!-- CSP مشددة ومناسبة للموارد المستخدمة (بدون سكربتات) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' https: data:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src  'self' https://fonts.gstatic.com;
+                 script-src 'none';
+                 object-src 'none';
+                 frame-src 'none';
+                 manifest-src 'self';
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 upgrade-insecure-requests">
+
+  <!-- تحسين تحميل الخط -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- (اختياري) أيقونة الموقع -->
+  <link rel="icon" href="icons/favicon.png" type="image/png">
+
+  <style>
+    /* ألوان أساسية */
+    :root{
+      --brand:#009fe3; --brand-2:#2c7a7b;
+      --bg:#f4f8fb; --card:#ffffff; --text:#1f2937; --muted:#475569; --line:#e2e8f0;
+      --hero-fg:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+      color-scheme: light dark; /* يدعم الثيمين لعناصر المتصفح */
+    }
+    /* ثيم داكن تلقائي حسب نظام الجهاز (بدون JS) */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b1324; --card:#0f172a; --text:#e2e8f0; --muted:#cbd5e1; --line:#1f2937; --hero-fg:#eaf6ff;
+      }
+    }
+
+    *{box-sizing:border-box}
+    html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; scroll-behavior:smooth }
+    html,body{width:100%; overflow-x:hidden}
+    body{
+      margin:0; min-height:100vh; display:flex; flex-direction:column; gap:20px;
+      font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Noto Sans',sans-serif;
+      background:var(--bg); color:var(--text);
+      animation:fadeIn .5s ease both;
+    }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; scroll-behavior:auto}
+    }
+
+    /* هيدر متدرّج + موجة */
+    header{
+      position:relative; text-align:center; color:var(--hero-fg);
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      padding:48px 18px 90px;
+    }
+    header h1{ margin:0 0 8px; font-size:2rem; font-weight:800 }
+    header p{ margin:0; opacity:.95 }
+    .wave{ position:absolute; inset:auto 0 0; display:block; width:100%; height:auto }
+    .wave path{ fill:var(--card); }
+
+    /* غلاف المحتوى */
+    .wrap{ width:100%; max-width:880px; margin-inline:auto; padding:0 18px 36px }
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:16px;
+      box-shadow:var(--shadow); padding:26px 22px; text-align:center;
+    }
+
+    /* أيقونة نجاح SVG */
+    .success-ico{
+      display:inline-grid; place-items:center; width:82px; height:82px;
+      margin-inline:auto; margin-top:-56px; margin-bottom:8px;
+      border-radius:50%;
+      background:conic-gradient(from 180deg at 50% 50%, #16a34a, #22c55e, #16a34a);
+      box-shadow:0 10px 20px rgba(0,0,0,.15);
+      border:4px solid var(--card);
+    }
+    .success-ico svg{ width:40px; height:40px; color:#fff }
+
+    .title{ font-size:1.4rem; font-weight:800; margin:6px 0 8px }
+    .desc{ color:var(--muted); margin:0 0 14px; line-height:1.9 }
+
+    /* أزرار */
+    .actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:12px 18px;
+      border:none; border-radius:12px; font-weight:800; text-decoration:none; cursor:pointer;
+      color:#fff; box-shadow:0 8px 18px rgba(0,0,0,.12);
+    }
+    .btn-home{ background:#0ea5e9 } .btn-home:hover{ background:#0284c7 }
+    .btn-wa{ background:#16a34a } .btn-wa:hover{ background:#15803d }
+    .btn:focus-visible{ outline:3px solid rgba(0,159,227,.35); outline-offset:2px }
+
+    footer{ text-align:center; color:#fff; background:#2d3748; padding:18px 12px; font-size:.95rem; margin-top:auto }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>تم إرسال طلبك بنجاح</h1>
+    <p>شكرًا لتواصلك معنا، سنراجع الطلب ونتواصل معك لتأكيد الموعد خلال ساعات الدوام.</p>
+
+    <!-- موجة تتبع لون الخلفية تلقائيًا -->
+    <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,96L60,101.3C120,107,240,117,360,106.7C480,96,600,64,720,58.7C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
+    </svg>
+  </header>
+
+  <main class="wrap">
+    <section class="card" aria-labelledby="t">
+      <div class="success-ico" aria-hidden="true">
+        <!-- أيقونة تحقق -->
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9.000 16.2l-3.5-3.5a1.2 1.2 0 1 1 1.697-1.697l2.303 2.303 6.303-6.303a1.2 1.2 0 0 1 1.697 1.697L10.7 16.2a1.2 1.2 0 0 1-1.7 0z" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <h2 id="t" class="title">تم استلام طلبك 🎉</h2>
+      <p class="desc">وصلنا نموذج الحجز الخاص بك، وسنتواصل معك هاتفياً أو عبر الواتساب لتأكيد الموعد وتحديد التفاصيل النهائية.</p>
+
+      <div class="actions" role="group" aria-label="روابط سريعة">
+        <a class="btn btn-home" href="index.html" rel="noopener">العودة للرئيسية</a>
+        <a class="btn btn-wa" href="https://wa.me/962797383239" target="_blank" rel="noopener" aria-label="التواصل عبر واتساب على 962797383239">التواصل عبر واتساب</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي</footer>
+</body>
+</html>
