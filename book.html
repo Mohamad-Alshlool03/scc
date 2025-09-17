@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>احجز موعدًا الآن | مركز الأبرز</title>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#009fe3">
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' https: data:;
+                 style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src  'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 script-src 'self' https://cdnjs.cloudflare.com;
+                 connect-src 'self' https://formsubmit.co;
+                 form-action https://formsubmit.co;
+                 object-src 'none';
+                 frame-src 'none';
+                 manifest-src 'self';
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 upgrade-insecure-requests">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://formsubmit.co" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (ضروري للأيقونات داخل الحقول) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="icons/favicon.png" type="image/png">
+</head>
+<body class="page-book">
+  <div class="wrap">
+    <header>
+      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">🌙</button>
+      <h1>احجز موعدًا الآن</h1>
+      <p>املأ البيانات الآتية وسنتواصل معك لتأكيد الموعد.</p>
+    </header>
+
+    <div class="content">
+      <div class="form-steps" aria-hidden="true">
+        <span class="step-chip">١) بياناتك</span>
+        <span class="step-chip">٢) الموعد</span>
+        <span class="step-chip">٣) إرسال</span>
+      </div>
+
+      <div class="form-card">
+        <form id="bookingForm"
+              action="https://formsubmit.co/mshlool684@gmail.com"
+              method="POST" accept-charset="UTF-8" novalidate>
+          <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="مرحبًا! تم استلام طلب الحجز. سنتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً).">
+          <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
+          <input type="text" name="_honey" class="hp" autocomplete="off" aria-hidden="true" tabindex="-1" hidden>
+
+          <!-- الصف الأول -->
+          <div class="input-icon input-name">
+            <label for="name">الاسم الكامل *</label>
+            <input id="name" name="الاسم الكامل" type="text" required autocomplete="name">
+          </div>
+
+          <div class="input-icon input-phone">
+            <label for="phone">رقم الهاتف *</label>
+            <input id="phone" name="رقم الهاتف" type="tel"
+                   inputmode="tel" autocomplete="tel" required
+                   pattern="^(?:\+(?:20|212|213|216|218|222|249|253|252|269|967|968|971|973|974|965|966|964|963|962|961|970)[0-9٠-٩]{6,12}|07[0-9٠-٩]{8})$"
+                   title="فقط من الدول العربية: اكتب بالصّيغة الدولية مثل +20… أو +971… أو +962… (أرقام عربية ٠-٩ أو لاتينية 0-9). للأردن نقبل أيضًا 07XXXXXXXX.">
+            <small class="hint">نقبل +962… أو 07XXXXXXXX داخل الأردن.</small>
+          </div>
+
+          <div class="input-icon input-email">
+            <label for="email">البريد الإلكتروني</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="اختياري">
+          </div>
+
+          <!-- الصف الثاني -->
+          <div class="input-icon input-service">
+            <label for="service">الخدمة المطلوبة *</label>
+            <select id="service" name="الخدمة المطلوبة" required>
+              <option value="" selected disabled>اختر خدمة</option>
+              <option>علاج وتأهيل الإصابات الرياضية بمختلف أنواعها</option>
+              <option>علاج الآلام العضلية</option>
+              <option>علاج خشونة والتهاب المفاصل</option>
+              <option>علاج الانزلاق الغضروفي (الديسك)</option>
+              <option>علاج مشاكل جهاز التوازن</option>
+              <option>علاج إصابات الجهاز العصبي مثل إصابات النخاع الشوكي والجلطات الدماغية</option>
+              <option>قسم مختص بعلاج الأطفال مثل حالات الشلل الدماغي</option>
+              <option>علاج مشاكل انحناء العمود الفقري</option>
+              <option>التعامل مع حالات التوحد</option>
+              <option>أخرى</option>
+            </select>
+          </div>
+
+          <div class="input-icon input-date">
+            <label for="date">التاريخ المفضّل *</label>
+            <input id="date" name="التاريخ المفضل" type="date" required>
+          </div>
+
+          <div class="input-icon input-time">
+            <label for="time">الوقت المفضّل *</label>
+            <select id="time" name="الوقت المفضل" required>
+              <option value="" selected disabled>اختر وقتًا</option>
+            </select>
+          </div>
+
+          <!-- ملاحظات -->
+          <div class="full">
+            <label for="msg">ملاحظات إضافية</label>
+            <textarea id="msg" name="ملاحظات إضافية" placeholder="اكتب وصفًا مختصرًا للحالة أو أي تفاصيل مهمة"></textarea>
+          </div>
+
+          <!-- الموافقة -->
+          <div class="consent">
+            <label for="agree">
+              <input id="agree" type="checkbox" required>
+              أوافق على التواصل عبر الهاتف أو الواتساب لتأكيد الموعد.
+            </label>
+          </div>
+
+          <!-- الأزرار -->
+          <div class="actions full">
+            <button type="submit" id="submitBtn">إرسال الطلب</button>
+            <a class="back" href="index.html" rel="noopener">العودة للرئيسية</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي</footer>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
