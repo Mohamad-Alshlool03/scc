@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://formsubmit.co" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome (ضروري للأيقونات داخل الحقول) -->
+  <!-- Font Awesome (للأيقونات داخل الحقول + زر الثيم) -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -36,10 +36,14 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="icons/favicon.png" type="image/png">
 </head>
-<body class="page-book">
+<body class="page-book theme-dark">
   <div class="wrap">
     <header>
-      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">🌙</button>
+      <!-- زر الثيم بأيقونة FA: يتبدّل شمس/قمر من main.js -->
+      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
+
       <h1>احجز موعدًا الآن</h1>
       <p>املأ البيانات الآتية وسنتواصل معك لتأكيد الموعد.</p>
     </header>
@@ -58,7 +62,7 @@
           <input type="hidden" name="_subject" value="طلب حجز جديد - موقع المركز">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_autoresponse" value="مرحبًا! تم استلام طلب الحجز. سنتواصل معك لتأكيد الموعد خلال ساعات الدوام (9 صباحًا – 5 مساءً).">
-          <input type="hidden" name="_next" value="https://mohamad-alshlool03.github.io/scc/thanks.html">
+          <input type="hidden" name="_next" value="thanks.html">
           <input type="text" name="_honey" class="hp" autocomplete="off" aria-hidden="true" tabindex="-1" hidden>
 
           <!-- الصف الأول -->
