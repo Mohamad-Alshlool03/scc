@@ -1,164 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>شركات التأمين المعتمدة | مركز الأبرز</title>
-  <meta name="description" content="قائمة الشركات التأمينية والجهات المعتمدة لدى مركز الأبرز في إربد.">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#009fe3">
-
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-                 img-src 'self' https: data:;
-                 style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-                 font-src  'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-                 script-src 'self';
-                 object-src 'none';
-                 frame-src 'none';
-                 frame-ancestors 'none';
-                 base-uri 'self';
-                 upgrade-insecure-requests">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- (اختياري) Font Awesome لأيقونة زر الثيم -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="page-insurers theme-dark">
-  <div class="wrap">
-    <header>
-      <button id="themeToggle" class="theme-toggle" aria-label="تبديل الثيم" title="تبديل الثيم">🌙</button>
-
-      <h1>شركات التأمين المعتمدة</h1>
-      <p>نقبل التعامل مع الجهات التالية. ابحث بالاسم أو صفِّ حسب النوع.</p>
-
-      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,96L60,101.3C120,107,240,117,360,106.7C480,96,600,64,720,58.7C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
-      </svg>
-    </header>
-
-    <main class="content">
-      <div class="insure-filter">
-        <div class="search">
-          <span class="search-ico" aria-hidden="true">🔎</span>
-          <input id="insureFilter" type="search" placeholder="ابحث مثلًا: نات هيلث، جلوب مِد، جي آي جي…"
-                 aria-label="ابحث ضمن شركات التأمين">
-        </div>
-
-        <div class="type-filter" role="tablist" aria-label="تصفية حسب النوع">
-          <button class="type-btn active" data-type="all" aria-selected="true">الكل</button>
-          <button class="type-btn" data-type="insurer">شركات التأمين</button>
-          <button class="type-btn" data-type="tpa">شركات إدارة مطالبات</button>
-          <button class="type-btn" data-type="association">نقابات وجهات</button>
-        </div>
-
-        <span class="badge"><span id="insureCount">0</span> جهة</span>
-      </div>
-
-      <ul class="brand-grid" role="list" id="insureList">
-        <!-- تأمين / TPA -->
-        <li class="brand-card"
-            data-name="نات هيلث NatHealth"
-            data-type="insurer"
-            data-url="https://www.nathealth.net"
-            data-domain="nathealth.net"></li>
-
-        <li class="brand-card"
-            data-name="جي آي جي – مجموعة الخليج للتأمين GIG"
-            data-type="insurer"
-            data-url="https://www.gig.com.jo"
-            data-domain="gig.com.jo"></li>
-
-        <li class="brand-card"
-            data-name="جلوب مِد الأردن GlobeMed"
-            data-type="insurer"
-            data-url="https://www.globemedjordan.com"
-            data-domain="globemedgroup.com"></li>
-
-        <li class="brand-card"
-            data-name="أومني كير (إدارة مطالبات) Omni Care"
-            data-type="tpa"
-            data-url="https://omnicare-jo.com"
-            data-domain="omni-care.net"
-            data-fallback="https://img.brandfetch.io/omni-care.net/logo"></li>
-
-        <li class="brand-card"
-            data-name="المجموعة العربية الأوروبية للتأمين Euro Arab"
-            data-type="insurer"
-            data-url="https://www.euroarabins.com"
-            data-domain="euroarabins.com"></li>
-
-        <li class="brand-card"
-            data-name="شركة التأمين الإسلامية Islamic Insurance"
-            data-type="insurer"
-            data-url="https://www.islamicinsurance.jo"
-            data-domain="islamicinsurance.jo"></li>
-
-        <li class="brand-card"
-            data-name="الضامنون العرب للتأمين Arab Assurers"
-            data-type="insurer"
-            data-url="https://www.arabassurers.jo"
-            data-domain="arabassurers.jo"
-            data-fallback="https://graph.facebook.com/arabassurers/picture?type=large"></li>
-
-        <!-- جهات / نقابات -->
-        <li class="brand-card"
-            data-name="نقابة المهندسين الأردنيين Jordan Engineers Association"
-            data-type="association"
-            data-url="https://www.jea.org.jo"
-            data-domain="jea.org.jo"></li>
-
-        <li class="brand-card"
-            data-name="نقابة المحامين الأردنيين Jordan Bar Association"
-            data-type="association"
-            data-url="http://jordanbar.org.jo"
-            data-domain=""
-            data-fallback="https://upload.wikimedia.org/wikipedia/ar/c/cc/Jordan_Bar_Association-logo.png"></li>
-
-        <li class="brand-card"
-            data-name="شركة الكهرباء الوطنية NEPCO"
-            data-type="association"
-            data-url="https://www.nepco.com.jo"
-            data-domain="nepco.com.jo"></li>
-
-        <li class="brand-card"
-            data-name="البنك المركزي الأردني Central Bank of Jordan"
-            data-type="association"
-            data-url="https://www.cbj.gov.jo"
-            data-domain=""
-            data-fallback="https://upload.wikimedia.org/wikipedia/en/2/2b/Central_Bank_of_Jordan_Logo.png"></li>
-
-        <li class="brand-card"
-            data-name="جامعة البلقاء التطبيقية Al-Balqa Applied University"
-            data-type="association"
-            data-url="https://www.bau.edu.jo"
-            data-domain="bau.edu.jo"
-            data-fallback="https://upload.wikimedia.org/wikipedia/commons/1/13/Al-balqa%27_Applied_University-Logo.png"></li>
-
-        <li class="brand-card"
-            data-name="البنك العربي الإسلامي الدولي IIAB"
-            data-type="association"
-            data-url="https://www.iiabank.com.jo"
-            data-domain="iiabank.com.jo"
-            data-fallback="https://upload.wikimedia.org/wikipedia/commons/0/0b/IIAB_Logo.png"></li>
-      </ul>
-
-      <div class="actions full" style="margin-top:18px">
-        <a class="back" href="index.html">العودة للرئيسية</a>
-      </div>
-    </main>
-
-    <footer>© 2025 مركز الأبرز الإستشاري للعلاج الطبيعي</footer>
-  </div>
-
-  <script src="main.js" defer></script>
-</body>
-</html>
