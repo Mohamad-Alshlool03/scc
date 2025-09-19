@@ -295,7 +295,7 @@
     });
   }
 })();
-/* === menu toggle === */
+/* === menu toggle (works on mobile & desktop) === */
 (function () {
   var btn   = document.getElementById('menuToggle');
   var panel = document.getElementById('menuPanel');
@@ -303,28 +303,35 @@
 
   function openMenu(){ panel.classList.add('show');  btn.setAttribute('aria-expanded','true'); }
   function closeMenu(){ panel.classList.remove('show'); btn.setAttribute('aria-expanded','false'); }
+  function isOpen(){ return panel.classList.contains('show'); }
 
-  // فتح/إغلاق عند الضغط على زر ☰
-  btn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (panel.classList.contains('show')) closeMenu(); else openMenu();
-  });
+  // امنع التفعيل مرتين على الموبايل (touch ثم click)
+  var lastTouch = 0;
+  function handleToggle(e){
+    if (e.type === 'touchend') lastTouch = Date.now();
+    if (e.type === 'click' && Date.now() - lastTouch < 300) return; // تجاهل النقر المكرر
+    e.preventDefault(); e.stopPropagation();
+    isOpen() ? closeMenu() : openMenu();
+  }
 
-  // إغلاق عند الضغط خارج القائمة
-  document.addEventListener('click', function (e) {
-    if (!panel.classList.contains('show')) return;
+  ['click','touchend'].forEach(t =>
+    btn.addEventListener(t, handleToggle, {passive:false})
+  );
+
+  // إغلاق عند النقر خارج القائمة
+  function outsideClose(e){
+    if (!isOpen()) return;
     if (e.target === btn || btn.contains(e.target) || panel.contains(e.target)) return;
     closeMenu();
-  });
+  }
+  document.addEventListener('click', outsideClose, {passive:true});
+  document.addEventListener('touchend', outsideClose, {passive:true});
 
-  // إغلاق عند ضغط ESC
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
+  // إغلاق عند ضغط ESC أو تغيّر المقاس
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', closeMenu);
 
-  // إغلاق بعد اختيار أي رابط داخل القائمة
-  panel.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') closeMenu();
-  });
+  // إغلاق بعد اختيار أي رابط داخل المينيو
+  panel.addEventListener('click', function(e){ if (e.target.tagName === 'A') closeMenu(); });
 })();
 
