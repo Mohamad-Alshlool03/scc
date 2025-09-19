@@ -142,38 +142,8 @@
   </div>
 
   <script src="main.js" defer></script>
-  <script>
-(function(){
-  var payload = {
-    path: location.pathname + location.search,
-    referrer: document.referrer || '',
-    ua: navigator.userAgent || '',
-    lang: navigator.language || ''
-  };
-
-  function send(data){
-    var url = 'https://script.google.com/macros/s/AKfycbwWbLie0FnuY2vYo8e4NnmawQE0oT6RWxoJZswmm-P6Ubpvqmv0uUFxyMG0nt6L6uXqPA/exec'; 
-    var blob = new Blob([JSON.stringify(data)], {type: 'text/plain'});
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, blob);
-    } else {
-      fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {'Content-Type': 'text/plain'},
-        body: JSON.stringify(data),
-        keepalive: true
-      });
-    }
-  }
-
-  fetch('https://api.ipify.org?format=json')
-    .then(function(r){ return r.json(); })
-    .then(function(d){ payload.ip = d.ip; send(payload); })
-    .catch(function(){ send(payload); });
-})();
-</script>
 
   
 </body>
 </html>
+
