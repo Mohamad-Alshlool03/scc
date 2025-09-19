@@ -265,6 +265,10 @@ body.theme-dark .menu-toggle{ background:rgba(0,0,0,.25) }
   display:block; padding:10px 12px; border-radius:8px; text-decoration:none; color:var(--text); font-weight:700;
 }
 .menu-panel a:hover{ background:color-mix(in srgb, var(--brand), white 85%) }
+
+
+.menu-toggle{ touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.menu-panel{ pointer-events: auto; }
 /* ====== فلترة حسب النوع (شركات/TPA/نقابات) ====== */
 .type-filter{
   display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:flex-end;
@@ -354,4 +358,5 @@ body.theme-dark .type-btn{
   .brand-card{ min-height:150px; padding:18px; }
   .brand-card img{ max-height:56px; }
 }
+
 
