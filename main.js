@@ -295,3 +295,36 @@
     });
   }
 })();
+/* === menu toggle === */
+(function () {
+  var btn   = document.getElementById('menuToggle');
+  var panel = document.getElementById('menuPanel');
+  if (!btn || !panel) return;
+
+  function openMenu(){ panel.classList.add('show');  btn.setAttribute('aria-expanded','true'); }
+  function closeMenu(){ panel.classList.remove('show'); btn.setAttribute('aria-expanded','false'); }
+
+  // فتح/إغلاق عند الضغط على زر ☰
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (panel.classList.contains('show')) closeMenu(); else openMenu();
+  });
+
+  // إغلاق عند الضغط خارج القائمة
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('show')) return;
+    if (e.target === btn || btn.contains(e.target) || panel.contains(e.target)) return;
+    closeMenu();
+  });
+
+  // إغلاق عند ضغط ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // إغلاق بعد اختيار أي رابط داخل القائمة
+  panel.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') closeMenu();
+  });
+})();
+
