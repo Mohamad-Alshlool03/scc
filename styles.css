@@ -358,5 +358,70 @@ body.theme-dark .type-btn{
   .brand-card{ min-height:150px; padding:18px; }
   .brand-card img{ max-height:56px; }
 }
+/* ===== Footer (الحقوق + شريط المطوّر) ===== */
+.site-footer{
+  margin-top: 22px;
+  padding: 14px 16px;
+  text-align: center;
+  background: #ffffff;
+  color: #222;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+body.theme-dark .site-footer{
+  background: #101418;
+  color: #e9edf3;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.site-footer .footer-main{ margin-bottom: 10px; font-weight: 600; }
+
+/* شريط المطوّر */
+.devbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0aa0e6, #16c2a1);
+  color: #fff;
+}
+body.theme-dark .devbar{ border-color: rgba(255,255,255,.08); }
+.dev-credit{ font-weight: 800; }
+
+/* زر واتساب */
+.dev-wa{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+  transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
+}
+.dev-wa:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+}
+.dev-wa i{ font-size: 1rem; }
+
+/* عرض الرقم من اليسار لليمين ليتنسق داخل العربية */
+.wa-num{
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+/* موبايل */
+@media (max-width:700px){
+  .devbar{ flex-direction: column; align-items: stretch; text-align: center; }
+  .dev-wa{ justify-content: center; }
+}
+
 
 
